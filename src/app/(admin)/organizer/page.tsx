@@ -7,13 +7,13 @@ async function getData(): Promise<User[]> {
     return mockUsers;
 }
 
-export default async function UserPage() {
+export default async function OrganizerPage() {
     const data:User[] = await getData()
 
     return (
         <div className="container mx-auto py-10">
-            <div>this is user on develop</div>
-            <DataTable columns={userColumns} data={data}/>
+            <div>this is organizer on develop</div>
+            <DataTable columns={userColumns} data={data} />
         </div>
     )
 }
