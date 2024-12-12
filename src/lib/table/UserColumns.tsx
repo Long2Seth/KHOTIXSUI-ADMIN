@@ -7,7 +7,7 @@ import Image from "next/image";
 
 
 
-export const columns: ColumnDef<User>[] = [
+export const userColumns: ColumnDef<User>[] = [
     {
         accessorKey: "id",
         header: "Id",
@@ -17,7 +17,6 @@ export const columns: ColumnDef<User>[] = [
         header: () => <div className="text-center">User</div>,
         cell: ({row}) => {
             const user:string = row.getValue("user");
-
             return (
                 <div className="flex justify-center m-0 p-0">
                     <Image
