@@ -1,5 +1,5 @@
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-
+import Image from "next/image";
 import {
     Sidebar,
     SidebarContent,
@@ -42,7 +42,16 @@ const items = [
 
 export function AppSidebar() {
     return (
-        <Sidebar>
+        <Sidebar collapsible="icon">
+            <div className="flex items-center justify-center h-16">
+                <Image
+                    src="https://m.media-amazon.com/images/I/51nh+qhxWCL._AC_UF894,1000_QL80_.jpg"
+                    alt="App Logo"
+                    width={40}
+                    height={40}
+                    className=""
+                />
+            </div>
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -52,7 +61,7 @@ export function AppSidebar() {
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
                                         <a href={item.url}>
-                                            <item.icon />
+                                            <item.icon/>
                                             <span>{item.title}</span>
                                         </a>
                                     </SidebarMenuButton>
