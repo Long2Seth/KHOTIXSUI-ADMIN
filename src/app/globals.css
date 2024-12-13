@@ -19,3 +19,25 @@
   --primary-color: #fff;
   --secondary-color-text: #000;
 }
+
+
+
+/* Only light mode*/
+/* For normal */
+/* For title use font size this */
+/* text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text */
+/* For description use font size this */
+/* text-description-color text-base md:text-lg xl:text-xl */
+
+/* For Card */
+/* For title use font size this */
+/* text-title-color text-base md:text-lg xl:text-xl font-bold dark:text-dark-description-color */
+/* For description use font size this */
+/* text-description-color text-sm md:text-base xl:text-lg */
+
+/* Space between container */
+/*space-y-[50px] md:space-y-[80px] xl:space-y-[100px] mb-[50px] md:mb-[80px] xl:mb-[100px]*/
+
+/* For background table */
+/*bg-white p-10 rounded-[6px] dark:bg-white dark:backdrop-blur dark:bg-opacity-5 space-y-4*/
+

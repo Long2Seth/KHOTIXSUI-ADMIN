@@ -181,7 +181,7 @@ const Sidebar = React.forwardRef<
       return (
         <div
           className={cn(
-            "flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground",
+            "flex w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground",
             className
           )}
           ref={ref}
@@ -206,7 +206,7 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-            <div className="flex h-full w-full flex-col">{children}</div>
+            <div className="flex w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
       )

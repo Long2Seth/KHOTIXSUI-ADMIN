@@ -3,6 +3,11 @@ import "../globals.css";
 import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/admin/app-sidebar";
 import {cookies} from "next/headers"
+import {ModeToggle} from "@/components/ui/modeToggle";
+import {IoMdNotificationsOutline} from "react-icons/io";
+import {ThemeProvider} from "next-themes";
+import NavBar from "@/components/admin/Navbar";
+// import StoreProvider from "@/components/ui/StoreProvider";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -17,13 +22,31 @@ export default async function RootLayout({
     const cookieStore = await cookies()
     const defaultOpen = cookieStore.get("sidebar:state")?.value === "true"
     return (
-        <html lang="en">
-        <body className={""}>
-        <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar/>
-            <SidebarTrigger/>
-            {children}
-        </SidebarProvider>
+        <html lang="en" suppressHydrationWarning>
+        <body className="bg-khotixs-background-white dark:bg-khotixs-background-dark ">
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+            <SidebarProvider defaultOpen={defaultOpen}>
+
+                <AppSidebar/>
+                <main className=" w-full ">
+
+                    <section className=" w-full flex justify-between h-auto ">
+                        <NavBar/>
+                    </section>
+
+                    {children}
+                </main>
+
+
+            </SidebarProvider>
+
+        </ThemeProvider>
+
         </body>
         </html>
     );
