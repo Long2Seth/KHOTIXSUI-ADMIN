@@ -1,6 +1,45 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+const config: {
+	darkMode: string[];
+	content: string[];
+	theme: {
+		extend: {
+			colors: {
+				background: string;
+				foreground: string;
+				card: { DEFAULT: string; foreground: string };
+				popover: { DEFAULT: string; foreground: string };
+				primary: { DEFAULT: string; foreground: string };
+				secondary: { DEFAULT: string; foreground: string };
+				muted: { DEFAULT: string; foreground: string };
+				accent: { DEFAULT: string; foreground: string };
+				destructive: { DEFAULT: string; foreground: string };
+				border: string;
+				input: string;
+				ring: string;
+				chart: { "1": string; "2": string; "3": string; "4": string; "5": string };
+				"khotixs-background-white": string;
+				"khotixs-background-dark": string;
+				"primary-color": string;
+				"secondary-color": string;
+				"primary-color-text": string;
+				"secondary-color-text": string;
+				"title-color": string;
+				"description-color": string;
+				"label-vip": string;
+				"label-premium": string;
+				"label-regular": string;
+				"label-free": string;
+				"label-paid": string;
+				"label-text-secondary": string;
+				"label-text-primary": string
+			};
+			borderRadius: { lg: string; md: string; sm: string }
+		}
+	};
+	plugins: { handler: () => void }[]
+} = {
     darkMode: ["class"],
     content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
