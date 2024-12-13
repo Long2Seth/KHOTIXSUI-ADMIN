@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "../globals.css";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/ui/app-sidebar";
-import { cookies } from "next/headers"
+import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
+import {AppSidebar} from "@/components/admin/app-sidebar";
+import {cookies} from "next/headers"
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-                                       children,
-                                   }: Readonly<{
+                                             children,
+                                         }: Readonly<{
     children: React.ReactNode;
 }>) {
     const cookieStore = await cookies()
@@ -20,9 +20,9 @@ export default async function RootLayout({
         <html lang="en">
         <body className={""}>
         <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar />
-                <SidebarTrigger />
-                {children}
+            <AppSidebar/>
+            <SidebarTrigger/>
+            {children}
         </SidebarProvider>
         </body>
         </html>
