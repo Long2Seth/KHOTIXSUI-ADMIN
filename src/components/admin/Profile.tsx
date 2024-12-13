@@ -103,50 +103,59 @@ export default function Profile() {
 
                             <section className=" flex flex-col gap-3">
                                 <div className=" flex ">
-                                    <div className=" flex gap-2 items-center min-w-[200px] ">
-                                        <PiUserCircleLight className=" text-gray-400 h-5 w-5 "/>
-                                        <p className="  text-gray-400">Username</p>
+                                    <div className=" flex gap-2 items-center min-w-[250px] ">
+                                        <PiUserCircleLight className=" text-description-color h-5 w-5 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg ">Username</p>
                                     </div>
-                                    <h2 className="">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
                                         {profileData.name}
-                                    </h2>
+                                    </p>
                                 </div>
                                 <div className=" flex ">
-                                    <div className=" flex gap-2 items-center min-w-[200px] ">
-                                        <TbScanPosition className=" text-gray-400 h-5 w-5 "/>
-                                        <p className="  text-gray-400"> Position</p>
+                                    <div className=" flex gap-2 items-center min-w-[250px] ">
+                                        <TbScanPosition className=" text-description-color h-5 w-5 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Position</p>
                                     </div>
-                                    <p className="text-gray-600">{profileData.role}</p>
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                        {profileData.role}
+                                    </p>
                                 </div>
                                 <div className=" flex ">
-                                    <div className=" flex gap-2 items-center min-w-[200px] ">
-                                        <FiPhone className=" text-gray-400 h-5 w-5 "/>
-                                        <p className="  text-gray-400"> Phone Number</p>
+                                    <div className=" flex gap-2 items-center min-w-[250px] ">
+                                        <FiPhone className=" text-description-color h-5 w-5 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Phone
+                                            Number</p>
                                     </div>
-                                    <p>{profileData.phone}</p>
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                        {profileData.phone}
+                                    </p>
                                 </div>
                                 <div className=" flex ">
-                                    <div className=" flex gap-2 items-center min-w-[200px] ">
-                                        <HiOutlineMail className=" text-gray-400 h-5 w-5 "/>
-                                        <p className="  text-gray-400"> Email</p>
+                                    <div className=" flex gap-2 items-center min-w-[250px] ">
+                                        <HiOutlineMail className=" text-description-color h-5 w-5 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Email</p>
                                     </div>
-                                    <h2 className="">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
                                         {profileData.email}
-                                    </h2>
+                                    </p>
                                 </div>
                                 <div className=" flex ">
-                                    <div className=" flex gap-2 items-center min-w-[200px] ">
-                                        <GrLocation className=" text-gray-400 h-5 w-5 "/>
-                                        <p className="  text-gray-400"> Address</p>
+                                    <div className=" flex gap-2 items-center min-w-[250px] ">
+                                        <GrLocation className=" text-description-color h-5 w-5 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Address</p>
                                     </div>
-                                    <p className="text-gray-600">{profileData.address}</p>
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                        {profileData.address}
+                                    </p>
                                 </div>
                                 <div className=" flex ">
-                                    <div className=" flex gap-2 items-center min-w-[200px] ">
-                                        <SlNote className=" text-gray-400 h-5 w-5 "/>
-                                        <p className="  text-gray-400"> Description</p>
+                                    <div className=" flex gap-2 items-center min-w-[250px] ">
+                                        <SlNote className=" text-description-color h-5 w-5 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Description</p>
                                     </div>
-                                    <p>{profileData.description}</p>
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                        {profileData.description}
+                                    </p>
                                 </div>
                             </section>
 
