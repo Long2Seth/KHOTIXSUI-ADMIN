@@ -11,8 +11,13 @@ export default async function UserPage() {
     const data:User[] = await getData()
 
     return (
-        <div className="container mx-auto py-10">
-            <div>this is user on develop</div>
+        <div className="flex flex-col gap-2 mx-auto p-2 w-full">
+            <div className={"bg-red-200 w-full h-[60px] flex items-center justify-between"}>
+                this is user on develop
+            </div>
+            <div className={"bg-green-300 w-full h-[60px] flex items-center justify-between"}>
+                this is user on develop
+            </div>
             <DataTable columns={userColumns} data={data}/>
         </div>
     )
