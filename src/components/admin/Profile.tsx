@@ -62,7 +62,7 @@ export default function Profile() {
     return (
         <section className=" p-10 ">
 
-            <div className="w-full mx-auto space-y-5 ">
+            <div className="w-full mx-auto ">
 
                 <div className=" space-y-2 ">
                     <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text">
@@ -74,21 +74,24 @@ export default function Profile() {
                 </div>
 
                 <Card className="w-full border-0 ">
-                    <section className=" flex gap-[150px]">
-                        <section className=" relative w-auto h-auto">
+                    <section className=" flex gap-[150px] p-5 ">
+                        <section
+                            className=" w-auto h-auto cursor-pointer "
+                            onClick={handleImageClick}>
                             <Image
                                 unoptimized
-                                width={100}
-                                height={100}
-                                className=" w-[150px] h-[150px] rounded-[6px] border border-gray-200  p-4 "
-                                src="/khotixs-logo.png"
+                                width={500}
+                                height={10}
+                                className=" w-[300px] h-auto rounded-[6px] border border-gray-200  p-5 "
+                                src="/phanmai.png"
                                 alt="Profile Image"
                             />
                             <div
-                                className="absolute bottom-[80px] right-[50px] cursor-pointer rounded-full w-8 h-8 bg-white items-center flex justify-center"
-                                onClick={handleImageClick}
+                                className=" -mt-[15px]  w-full flex justify-center "
                             >
-                                <CiCamera className=" h-5 w-5 text-gray-200  "/>
+                                <div className=" rounded-full w-8 h-8 bg-white items-center flex justify-center ">
+                                    <CiCamera className=" h-5 w-5 text-gray-200  "/>
+                                </div>
                             </div>
                             <input
                                 type="file"
@@ -161,9 +164,12 @@ export default function Profile() {
 
                         </div>
 
-
                     </section>
                 </Card>
+
+                <form onSubmit={handleSave}>
+                    <button type="submit">Save</button>
+                </form>
 
             </div>
         </section>

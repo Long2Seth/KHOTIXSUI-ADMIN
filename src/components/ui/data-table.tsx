@@ -32,8 +32,9 @@ export function DataTable<TData, TValue>({
     })
 
     return (
-        <div>
-            <Table className="w-full border rounded-lg">
+        <div className={"border rounded-lg"}>
+            <Table className="">
+                {/*<DataTableViewOptions table={table} />*/}
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
