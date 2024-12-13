@@ -1,18 +1,15 @@
 import { LuUser } from "react-icons/lu";
 import { FiUsers } from "react-icons/fi";
-import { RiCalendarEventLine } from "react-icons/ri";
-import { RiSecurePaymentLine } from "react-icons/ri";
-import { RiFolderChartLine } from "react-icons/ri";
-import { RiBarChartBoxAiLine } from "react-icons/ri";
+import { RiCalendarEventLine, RiSecurePaymentLine, RiFolderChartLine, RiBarChartBoxAiLine } from "react-icons/ri";
 import { ComponentType } from "react";
+import { IconBaseProps } from "react-icons";
 
 type SidebarItem = {
     title: string;
     url: string;
-    icon: ComponentType;
+    icon: ComponentType<IconBaseProps & { width?: number; height?: number }>;
 };
 
-// Menu items.
 export const SideBarData: SidebarItem[] = [
     {
         title: "Dashboard",
