@@ -16,7 +16,7 @@ export function AppSidebar() {
         <Sidebar collapsible="icon">
             <div className="flex items-center justify-center h-16">
                 <Image
-                    src="https://m.media-amazon.com/images/I/51nh+qhxWCL._AC_UF894,1000_QL80_.jpg"
+                    src="/khotixs-logo.png"
                     alt="App Logo"
                     width={40}
                     height={40}
