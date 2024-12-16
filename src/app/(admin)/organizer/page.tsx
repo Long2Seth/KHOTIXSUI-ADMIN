@@ -7,7 +7,6 @@ import {Button} from "@/components/ui/button";
 import {FileSpreadsheet} from "lucide-react";
 import {Input} from "@/components/ui/input";
 import {SelectScrollable} from "@/components/admin/SelectComponent";
-import {mockUserSearch} from "@/mock-data/search-column/user-search";
 import {mockOrganizerSearch} from "@/mock-data/search-column/organizer-search";
 
 async function getData(): Promise<User[]> {

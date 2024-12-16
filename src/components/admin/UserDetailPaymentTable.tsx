@@ -53,6 +53,9 @@ export default function UserDetailPaymentTable() {
                             Booking History
                         </h1>
                     </CardTitle>
+                    <Button onClick={exportToExcel} className="bg-blue-500 text-white rounded-md px-4 py-2">
+                        Export to Excel
+                    </Button>
                 </div>
             </CardHeader>
 
@@ -214,11 +217,6 @@ export default function UserDetailPaymentTable() {
                                                 className="px-2 lg:w-[500px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                 {orderData.endDate}
                                             </TableCell>
-
-
-                                            {/*<TableCell className="lg:min-w-[120px] text-center text-description-color text-[10px] md:text-sm xl:text-base">*/}
-                                            {/*    <Badge className={`rounded-[6px] text[10px] md:text-base min-w-[120px] justify-center font-normal ${orderData.status === 'publish' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{orderData.status === 'publish' ? 'Publish' : 'Unpublish'}</Badge>*/}
-                                            {/*</TableCell>*/}
                                         </TableRow>
                                     ))}
                                 </TableBody>

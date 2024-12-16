@@ -1,7 +1,6 @@
 'use client'
 
 import CardPayment from "@/components/admin/CardPayment";
-import {Button} from "@/components/ui/button";
 import CreatePaymentMethod from "@/components/admin/CreatePaymentMethod";
 
 type ProfileData = {

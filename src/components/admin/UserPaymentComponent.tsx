@@ -49,7 +49,7 @@ export default function UserPaymentComponent() {
             <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 my-5 ">
                     <CardTitle>
-                        <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text my-2">PAYMENT'S
+                        <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text my-2">PAYMENT&apos;S
                             USERS</h1>
                         <p className="text-description-color text-sm md:text-base xl:text-lg font-light dark:text-dark-description-color">Real-time
                             insights for data-driven decisions</p>
