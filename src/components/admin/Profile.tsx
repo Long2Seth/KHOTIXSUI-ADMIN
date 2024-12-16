@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState, useRef} from "react"
+import React, {useState} from "react"
 import {Card} from "@/components/ui/card"
 import {PiUserCircleLight} from "react-icons/pi";
 import {TbScanPosition} from "react-icons/tb";
@@ -9,9 +9,9 @@ import {HiOutlineMail} from "react-icons/hi";
 import {GrLocation} from "react-icons/gr";
 import {SlNote} from "react-icons/sl";
 import Image from "next/image";
-import {CiCamera} from "react-icons/ci";
+import EditProfile from "@/components/admin/EditProfile";
 
-interface ProfileData {
+type ProfileData = {
     name: string
     role: string
     email: string
@@ -22,7 +22,7 @@ interface ProfileData {
 }
 
 export default function Profile() {
-    const [profileData, setProfileData] = useState<ProfileData>({
+    const [profileData] = useState<ProfileData>({
         name: "CHHAYA DEV",
         role: "SOFTWARE ENGINEERING",
         email: "chhaya.dev@gmail.com",
@@ -32,35 +32,9 @@ export default function Profile() {
         createdDate: "16 Nov, 2024"
     })
 
-    const fileInputRef = useRef<HTMLInputElement>(null)
-
-    const handleSave = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        const formData = new FormData(event.currentTarget)
-        setProfileData({
-            name: formData.get('name') as string,
-            role: formData.get('role') as string,
-            email: formData.get('email') as string,
-            phone: formData.get('phone') as string,
-            address: formData.get('address') as string,
-            description: formData.get('description') as string,
-            createdDate: profileData.createdDate // Preserve the original date
-        })
-    }
-
-    const handleImageClick = () => {
-        fileInputRef.current?.click()
-    }
-
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
-        if (file) {
-            // Handle the file upload logic here
-        }
-    }
 
     return (
-        <section className=" p-10 ">
+        <section>
 
             <div className="w-full mx-auto ">
 
@@ -77,7 +51,7 @@ export default function Profile() {
                     <section className=" flex gap-[150px] p-5 ">
                         <section
                             className=" w-auto h-auto cursor-pointer "
-                            onClick={handleImageClick}>
+                        >
                             <Image
                                 unoptimized
                                 width={500}
@@ -86,23 +60,10 @@ export default function Profile() {
                                 src="/phanmai.png"
                                 alt="Profile Image"
                             />
-                            <div
-                                className=" -mt-[15px]  w-full flex justify-center "
-                            >
-                                <div className=" rounded-full w-8 h-8 bg-white items-center flex justify-center ">
-                                    <CiCamera className=" h-5 w-5 text-gray-200  "/>
-                                </div>
-                            </div>
-                            <input
-                                type="file"
-                                ref={fileInputRef}
-                                style={{display: 'none'}}
-                                onChange={handleImageChange}
-                            />
                         </section>
 
-                        <div
-                            className="flex md:flex-row md:gap-6 justify-between items-center w-full border border-gray-200 rounded-[6px] p-5 ">
+                        <section
+                            className=" relative flex md:flex-row md:gap-6 justify-between items-center w-full border border-gray-200 rounded-[6px] p-5 ">
 
                             <section className=" flex flex-col gap-3">
                                 <div className=" flex ">
@@ -162,14 +123,14 @@ export default function Profile() {
                                 </div>
                             </section>
 
-                        </div>
+                            <EditProfile  />
+
+                        </section>
+
 
                     </section>
                 </Card>
 
-                <form onSubmit={handleSave}>
-                    <button type="submit">Save</button>
-                </form>
 
             </div>
         </section>

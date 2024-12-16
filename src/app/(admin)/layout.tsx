@@ -1,10 +1,8 @@
 import type {Metadata} from "next";
 import "../globals.css";
-import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
+import {SidebarProvider} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/admin/app-sidebar";
 import {cookies} from "next/headers"
-import {ModeToggle} from "@/components/ui/modeToggle";
-import {IoMdNotificationsOutline} from "react-icons/io";
 import {ThemeProvider} from "next-themes";
 import NavBar from "@/components/admin/Navbar";
 // import StoreProvider from "@/components/ui/StoreProvider";
@@ -23,7 +21,7 @@ export default async function RootLayout({
     const defaultOpen = cookieStore.get("sidebar:state")?.value === "true"
     return (
         <html lang="en" suppressHydrationWarning>
-        <body className="bg-khotixs-background-white dark:bg-khotixs-background-dark ">
+        <body className="bg-khotixs-background-white dark:bg-khotixs-background-dark  ">
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -33,13 +31,15 @@ export default async function RootLayout({
             <SidebarProvider defaultOpen={defaultOpen}>
 
                 <AppSidebar/>
-                <main className=" w-full ">
+                <main className="w-full overflow-x-hidden">
 
-                    <section className=" w-full flex justify-between h-auto ">
+                    <section className="z-40 top-0 sticky w-full flex justify-between h-auto">
                         <NavBar/>
                     </section>
 
-                    {children}
+                    <section className="dark:bg-gray-500 dark:backdrop-blur dark:bg-opacity-5 px-20 py-10 ">
+                        {children}
+                    </section>
                 </main>
 
 
