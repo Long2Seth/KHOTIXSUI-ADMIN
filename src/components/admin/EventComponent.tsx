@@ -131,9 +131,9 @@ export default function EventComponent() {
                                         <TableHead className="px-2 py-5 lg:min-w-[200px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">START DATE</TableHead>
                                         <TableHead className="px-2 py-5 lg:min-w-[200px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">END DATE</TableHead>
                                         <TableHead className="px-2 py-5 lg:min-w-[300px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">LOCATION</TableHead>
-                                        <TableHead className="px-2 py-5 lg:min-w-[100px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">QTY</TableHead>
-                                        <TableHead className="px-2 py-5 lg:min-w-[100px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">PRICE</TableHead>
-                                        <TableHead className="px-2 py-5 lg:min-w-[100px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">TOTAL</TableHead>
+                                        {/*<TableHead className="px-2 py-5 lg:min-w-[100px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">QTY</TableHead>*/}
+                                        {/*<TableHead className="px-2 py-5 lg:min-w-[100px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">PRICE</TableHead>*/}
+                                        {/*<TableHead className="px-2 py-5 lg:min-w-[100px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">TOTAL</TableHead>*/}
                                         <TableHead className="px-2 py-5 lg:min-w-[200px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">STATUS</TableHead>
                                     </TableRow>
                                 </TableHeader>
@@ -149,14 +149,17 @@ export default function EventComponent() {
                                             <TableCell className="px-2 lg:min-w-[100px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.startDate}</TableCell>
                                             <TableCell className="px-2 lg:min-w-[100px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.endDate}</TableCell>
                                             <TableCell className="px-2 lg:min-w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.location}</TableCell>
-                                            <TableCell className="px-2 lg:min-w-[100px] text-center text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.qty}</TableCell>
-                                            <TableCell className="px-2 lg:min-w-[100px] text-center font-semibold text-[10px] md:text-sm xl:text-base text-green-600">{"$" + orderData.price}</TableCell>
-                                            <TableCell className="px-2 lg:min-w-[100px] text-center font-semibold text-green-600 text-[10px] md:text-sm xl:text-base">{"$" + orderData.qty * orderData.price}</TableCell>
+                                            {/*<TableCell className="px-2 lg:min-w-[100px] text-center text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.qty}</TableCell>*/}
+                                            {/*<TableCell className="px-2 lg:min-w-[100px] text-center font-semibold text-[10px] md:text-sm xl:text-base text-green-600">{"$" + orderData.price}</TableCell>*/}
+                                            {/*<TableCell className="px-2 lg:min-w-[100px] text-center font-semibold text-green-600 text-[10px] md:text-sm xl:text-base">{"$" + orderData.qty * orderData.price}</TableCell>*/}
                                             {/*<TableCell className="text-center lg:min-w-[120px]">*/}
                                             {/*    <Badge className={`text-secondary-color-text text-center text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px] min-w-[120px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>{orderData.ticketType}</Badge>*/}
                                             {/*</TableCell>*/}
                                             <TableCell className="lg:min-w-[100px] text-center text-description-color text-[10px] md:text-sm xl:text-base">
                                                 <Badge className={`rounded-[6px] text[10px] md:text-base min-w-[100px] justify-center font-normal ${orderData.status === 'publish' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{orderData.status === 'publish' ? 'Enable' : 'Disable'}</Badge>
+                                            </TableCell>
+                                            <TableCell>
+
                                             </TableCell>
                                         </TableRow>
                                     ))}
