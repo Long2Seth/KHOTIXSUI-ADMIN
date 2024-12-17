@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, {useState} from "react";
 import {Calendar} from 'lucide-react';
 import * as XLSX from "xlsx";
@@ -12,27 +12,30 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Calendar as CalendarComponent} from "@/components/ui/calendar";
 import {Badge} from "@/components/ui/badge";
 import Image from "next/image";
-import {orderData} from "@/lib/admin/OrderDate";
-import {Pagination} from "@/components/admin/Pagination";
 import {UserPaymentData} from "@/lib/admin/UserPaymentData";
+import {Pagination} from "@/components/admin/Pagination";
 
 export default function UserPaymentComponent() {
     const [searchData, setSearchData] = useState("");
     const [date, setDate] = useState<Date>();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [selectedCity, setSelectedCity] = useState("");
+    const [selectedTicketType, setSelectedTicketType] = useState("");
 
-    // Filter payments based on searchData term
+    // Filter payments based on searchData term, selected city, and ticket type
     const filterOrderData = UserPaymentData.filter(attendance =>
-        attendance.event.toLowerCase().includes(searchData.toLowerCase()) ||
-        attendance.id.toString().includes(searchData.toLowerCase())
+        (attendance.event.toLowerCase().includes(searchData.toLowerCase()) ||
+            attendance.id.toString().includes(searchData.toLowerCase())) &&
+        (selectedCity ? attendance.location.includes(selectedCity) : true) &&
+        (selectedTicketType ? attendance.ticketType === selectedTicketType : true)
     );
 
     const totalItems = filterOrderData.length;
 
     // Export to Excel function
     const exportToExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(orderData);
+        const ws = XLSX.utils.json_to_sheet(filterOrderData);
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, "Payments");
         XLSX.writeFile(wb, "payments.xlsx");
@@ -66,33 +69,40 @@ export default function UserPaymentComponent() {
             <CardContent className="bg-white p-10 rounded-[6px] dark:backdrop-blur dark:bg-opacity-5 space-y-4">
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <Input
-                        placeholder="Search"
+                        placeholder="Search by event name or ID"
                         value={searchData}
                         onChange={(e) => setSearchData(e.target.value)}
                         className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text dark:border"
                     />
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <Select>
+                        <Select onValueChange={(value) => setSelectedCity(value === "ALL" ? "" : value)}>
                             <SelectTrigger
                                 className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectValue placeholder="Events"/>
+                                <SelectValue placeholder="Location"/>
                             </SelectTrigger>
                             <SelectContent
                                 className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectItem value="queen">The Rise Of The Queen</SelectItem>
+                                <SelectItem value="ALL">ALL</SelectItem>
+                                {Array.from(new Set(UserPaymentData.map((event) => event.location.split(', ')[1]))).map((city, index) => (
+                                    <SelectItem key={index} value={city}>{city}</SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
-                        <Select>
+                        <Select onValueChange={(value) => setSelectedTicketType(value === "ALL" ? "" : value)}>
                             <SelectTrigger
                                 className="max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectValue placeholder="Publish"/>
+                                <SelectValue placeholder="Ticket Type"/>
                             </SelectTrigger>
                             <SelectContent
                                 className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                <SelectItem value="ALL">ALL</SelectItem>
+                                <SelectItem className="dark:hover:text-primary-color-text" value="VIP">VIP</SelectItem>
                                 <SelectItem className="dark:hover:text-primary-color-text"
-                                            value="published">Published</SelectItem>
+                                            value="PREMIUM">Premium</SelectItem>
                                 <SelectItem className="dark:hover:text-primary-color-text"
-                                            value="draft">Draft</SelectItem>
+                                            value="REGULAR">Regular</SelectItem>
+                                <SelectItem className="dark:hover:text-primary-color-text"
+                                            value="FREE">Free</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -115,14 +125,14 @@ export default function UserPaymentComponent() {
                         </PopoverContent>
                     </Popover>
                 </div>
-                <div className="min-w-[1200px] overflow-x-auto">
+                <div className=" overflow-x-auto">
                     <div className="inline-block align-middle">
                         <div className="border rounded-[6px]">
                             <Table className="">
-                                <TableHeader className="">
+                                <TableHeader>
                                     <TableRow>
                                         <TableHead
-                                            className="px-2 lg:min-w-[200px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className="px-2 lg:min-w-[200px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
                                             ID
                                         </TableHead>
                                         <TableHead
@@ -165,7 +175,6 @@ export default function UserPaymentComponent() {
                                             className="px-2 py-5 lg:min-w-[200px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
                                             END DATE
                                         </TableHead>
-
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -173,7 +182,7 @@ export default function UserPaymentComponent() {
                                         <TableRow className="hover:bg-gray-100 dark:hover:bg-khotixs-background-dark"
                                                   key={orderData.id}>
                                             <TableCell
-                                                className="px-2 lg:w-[200px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                className="px-2 lg:w-[200px] text-center text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                 {orderData.id}
                                             </TableCell>
                                             <TableCell
@@ -203,14 +212,14 @@ export default function UserPaymentComponent() {
                                                 className="px-2 lg:w-[200px] text-start font-semibold text-green-600 text-[10px] md:text-sm xl:text-base">
                                                 {"$" + orderData.qty * orderData.price}
                                             </TableCell>
-                                            <TableCell className="text-start lg:min-w-[120px]">
+                                            <TableCell className="text-start">
                                                 <Badge
-                                                    className={`text-secondary-color-text text-start text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px] min-w-[120px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
+                                                    className={`text-secondary-color-text text-start text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px] px-2 min-w-[60px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
                                                     {orderData.ticketType}
                                                 </Badge>
                                             </TableCell>
                                             <TableCell
-                                                className="px-2 lg:w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                className="px-2 lg:w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color uppercase ">
                                                 {orderData.paymentMethod}
                                             </TableCell>
                                             <TableCell
@@ -221,11 +230,6 @@ export default function UserPaymentComponent() {
                                                 className="px-2 lg:w-[500px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                 {orderData.endDate}
                                             </TableCell>
-
-
-                                            {/*<TableCell className="lg:min-w-[120px] text-center text-description-color text-[10px] md:text-sm xl:text-base">*/}
-                                            {/*    <Badge className={`rounded-[6px] text[10px] md:text-base min-w-[120px] justify-center font-normal ${orderData.status === 'publish' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{orderData.status === 'publish' ? 'Publish' : 'Unpublish'}</Badge>*/}
-                                            {/*</TableCell>*/}
                                         </TableRow>
                                     ))}
                                 </TableBody>

@@ -10,10 +10,10 @@ type SidebarItem = {
     icon: ComponentType<IconBaseProps & { width?: number; height?: number }>;
 };
 
-export const SideBarData: SidebarItem[] = [
+export const SideBarData = [
     {
         title: "Dashboard",
-        url: "/dashboard",
+        url: "/",
         icon: RiBarChartBoxAiLine,
     },
     {
