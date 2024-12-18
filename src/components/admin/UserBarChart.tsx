@@ -42,12 +42,12 @@ const chartConfig = {
 
 export function UserBarChart() {
     return (
-        <Card className=" dark:bg-khotixs-background-dark">
-            <CardHeader>
+        <Card className=" dark:bg-white dark:backdrop-blur dark:bg-opacity-5">
+            <CardHeader className=" m-5 ">
                 <CardTitle
-                    className=" text-title-color text-base md:text-lg xl:text-xl font-bold dark:text-dark-description-color dark:text-secondary-color-text">Bar
+                    className=" text-title-color text-base md:text-lg xl:text-xl font-bold dark:text-dark-description-color ">Bar
                     Chart - User</CardTitle>
-                <CardDescription className=" text-description-color text-sm md:text-base xl:text-lg ">January - December
+                <CardDescription className=" text-description-color text-sm md:text-base xl:text-lg dark:text-dark-description-color ">January - December
                     2024</CardDescription>
             </CardHeader>
             <CardContent>
@@ -92,7 +92,7 @@ export function UserBarChart() {
                     </p>
                     <TrendingUp className="h-7 w-7"/>
                 </div>
-                <div className=" text-description-color text-sm md:text-base xl:text-lg ">
+                <div className=" text-description-color text-sm md:text-base xl:text-lg dark:text-dark-description-color">
                     Showing total visitors for the last 12 months
                 </div>
             </CardFooter>

@@ -1,19 +1,19 @@
 'use client'
-import React, {useState} from "react";
-import {Calendar} from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar } from 'lucide-react';
 import * as XLSX from "xlsx";
-import {format} from "date-fns";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
-import {CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
-import {Calendar as CalendarComponent} from "@/components/ui/calendar";
-import {Badge} from "@/components/ui/badge";
+import { format } from "date-fns";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import {orderData} from "@/lib/admin/OrderDate";
-import {Pagination} from "@/components/admin/Pagination";
+import { orderData } from "@/lib/admin/OrderDate";
+import { Pagination } from "@/components/admin/Pagination";
 
 const locations = Array.from(new Set(orderData.map(order => order.location)));
 
@@ -24,7 +24,6 @@ export default function OrderTableComponent() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [selectedLocation, setSelectedLocation] = useState("all");
     const [selectedStatus, setSelectedStatus] = useState("all");
-
 
     // Filter payments based on searchData term and selected location
     const filterOrderData = orderData.filter(attendance =>
@@ -75,12 +74,12 @@ export default function OrderTableComponent() {
                         placeholder="Search by ID or Event Name"
                         value={searchData}
                         onChange={(e) => setSearchData(e.target.value)}
-                        className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text"
+                        className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text"
                     />
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Select onValueChange={setSelectedLocation}>
                             <SelectTrigger
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedLocation === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-gray-400"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
                                 <SelectValue placeholder="Location"/>
                             </SelectTrigger>
                             <SelectContent
@@ -91,23 +90,25 @@ export default function OrderTableComponent() {
                                 ))}
                             </SelectContent>
                         </Select>
+
                         <Select onValueChange={setSelectedStatus}>
                             <SelectTrigger
-                                className="max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedStatus === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
                                 <SelectValue placeholder="Status "/>
                             </SelectTrigger>
                             <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
                                 <SelectItem value="all">ALL</SelectItem>
-                                <SelectItem className="dark:hover:text-primary-color-text" value="publish">Published</SelectItem>
-                                <SelectItem className="dark:hover:text-primary-color-text" value="unpublish">Draft</SelectItem>
+                                <SelectItem value="publish">Published</SelectItem>
+                                <SelectItem  value="unpublish">Draft</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
+
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
-                                className="max-w-[400px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`max-w-[400px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${date ? "text-black" : "text-gray-400"} dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text`}>
                                 <Calendar className="mr-2 h-4 w-4"/>
                                 {date ? format(date, "PPP") : <span className="text-md md:text-lg">Pick a date</span>}
                             </Button>
@@ -123,6 +124,8 @@ export default function OrderTableComponent() {
                         </PopoverContent>
                     </Popover>
                 </div>
+
+
                 <div className="overflow-x-auto">
                     <div className="inline-block align-middle">
                         <div className="border rounded-[6px]">
@@ -130,7 +133,7 @@ export default function OrderTableComponent() {
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead
-                                            className="px-2 py-5 w-auto lg:min-w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">ID</TableHead>
+                                            className="px-2 py-5 w-auto lg:min-w-[150px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">ID</TableHead>
                                         <TableHead
                                             className="px-2 py-5 lg:min-w-[500px] pl-20 text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">EVENT
                                             NAME</TableHead>
@@ -156,41 +159,37 @@ export default function OrderTableComponent() {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {currentItems.map((orderData) => (
-                                        <TableRow className="hover:bg-gray-100 dark:hover:bg-khotixs-background-dark"
-                                                  key={orderData.id}>
-                                            <TableCell
-                                                className="px-2 lg:w-[200px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.id}</TableCell>
-                                            <TableCell className="flex items-center">
-                                                <Image className="rounded-[6px]" width={90} height={10}
-                                                       src={orderData.image} alt="image"/>
-                                                <p className="px-2 lg:w-[500px] text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.eventName}</p>
-                                            </TableCell>
-                                            <TableCell
-                                                className="px-2 lg:min-w-[100px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.startDate}</TableCell>
-                                            <TableCell
-                                                className="px-2 lg:min-w-[100px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.endDate}</TableCell>
-                                            <TableCell
-                                                className="px-2 lg:min-w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.location}</TableCell>
-                                            <TableCell
-                                                className="px-2 lg:min-w-[100px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.qty}</TableCell>
-                                            <TableCell
-                                                className="px-2 lg:min-w-[100px] text-start font-semibold text-[10px] md:text-sm xl:text-base text-green-600">{"$" + orderData.price}</TableCell>
-                                            <TableCell
-                                                className="px-2 lg:min-w-[100px] text-start font-semibold text-green-600 text-[10px] md:text-sm xl:text-base">{"$" + orderData.qty * orderData.price}</TableCell>
-                                            <TableCell className="text-start">
-                                                <Badge
-                                                    className={`text-secondary-color-text text-start text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px] px-2 min-w-[60px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
-                                                    {orderData.ticketType}
-                                                </Badge>
-                                            </TableCell>
-                                            <TableCell
-                                                className="text-start text-description-color text-[10px] md:text-sm xl:text-base">
-                                                <Badge
-                                                    className={`rounded-[6px] text[10px] md:text-base    justify-center font-normal ${orderData.status === 'publish' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{orderData.status === 'publish' ? 'Publish' : 'Unpublish'}</Badge>
+                                    {currentItems.length > 0 ? (
+                                        currentItems.map((orderData) => (
+                                            <TableRow className="hover:bg-gray-100 dark:hover:bg-khotixs-background-dark" key={orderData.id}>
+                                                <TableCell className="px-2 lg:w-[200px] text-center text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.id}</TableCell>
+                                                <TableCell className="flex items-center">
+                                                    <Image className="rounded-[6px]" width={90} height={10} src={orderData.image} alt="image"/>
+                                                    <p className="px-2 lg:w-[500px] text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.eventName}</p>
+                                                </TableCell>
+                                                <TableCell className="px-2 lg:min-w-[100px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.startDate}</TableCell>
+                                                <TableCell className="px-2 lg:min-w-[100px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.endDate}</TableCell>
+                                                <TableCell className="px-2 lg:min-w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.location}</TableCell>
+                                                <TableCell className="px-2 lg:min-w-[100px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.qty}</TableCell>
+                                                <TableCell className="px-2 lg:min-w-[100px] text-start font-semibold text-[10px] md:text-sm xl:text-base text-green-600">{"$" + orderData.price}</TableCell>
+                                                <TableCell className="px-2 lg:min-w-[100px] text-start font-semibold text-green-600 text-[10px] md:text-sm xl:text-base">{"$" + orderData.qty * orderData.price}</TableCell>
+                                                <TableCell className="text-start">
+                                                    <Badge className={`text-secondary-color-text text-start text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px] px-2 min-w-[60px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
+                                                        {orderData.ticketType}
+                                                    </Badge>
+                                                </TableCell>
+                                                <TableCell className="text-start text-description-color text-[10px] md:text-sm xl:text-base">
+                                                    <Badge className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${orderData.status === 'publish' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{orderData.status === 'publish' ? 'Publish' : 'Unpublish'}</Badge>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))
+                                    ) : (
+                                        <TableRow>
+                                            <TableCell colSpan={10} className="text-center text-description-color text-base md:text-lg xl:text-xl ">
+                                                No orders found
                                             </TableCell>
                                         </TableRow>
-                                    ))}
+                                    )}
                                 </TableBody>
                             </Table>
                         </div>
