@@ -31,10 +31,10 @@ export default function EventComponent() {
     // Filter events based on search term, category, location, and status
     const filteredData = AllEventData.filter(event => {
         return (
-            event.eventName.toLowerCase().includes(searchData.toLowerCase()) &&
-            (category !== "all" ? event.category.toLowerCase() === category.toLowerCase() : true) &&
-            (location !== "all" ? event.location.toLowerCase().includes(location.toLowerCase()) : true) &&
-            (status !== "all" ? event.status.toLowerCase() === status.toLowerCase() : true)
+            (category === "all" || event.category === category) ||
+            (location === "all" || event.location === location) ||
+            (status === "all" || event.status === status) ||
+            event.eventName.toLowerCase().includes(searchData.toLowerCase())
         );
     });
 
@@ -59,7 +59,7 @@ export default function EventComponent() {
             <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 my-5 ">
                     <CardTitle>
-                        <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text my-2 ">ORDER
+                        <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text my-2 ">EVENT
                             DATA</h1>
                         <p className="text-description-color text-sm md:text-base xl:text-lg font-light dark:text-dark-description-color">Real-time
                             insights for data-driven decisions</p>
@@ -79,12 +79,12 @@ export default function EventComponent() {
                         placeholder="Search by event name"
                         value={searchData}
                         onChange={(e) => setSearchData(e.target.value)}
-                        className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text"
+                        className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text"
                     />
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Select onValueChange={setCategory}>
                             <SelectTrigger
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${category === "all" ?  "text-gray-400" : "text-black"}`}>
                                 <SelectValue placeholder="Category"/>
                             </SelectTrigger>
                             <SelectContent
@@ -98,11 +98,11 @@ export default function EventComponent() {
 
                         <Select onValueChange={setLocation}>
                             <SelectTrigger
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${location === "all" ?  "text-gray-400" : "text-black"}`}>
                                 <SelectValue placeholder="Location"/>
                             </SelectTrigger>
                             <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
                                 <SelectItem value="all">ALL</SelectItem>
                                 {locations.map(location => (
                                     <SelectItem key={location.toLowerCase()} value={location.toLowerCase()}>{location}</SelectItem>
@@ -112,7 +112,7 @@ export default function EventComponent() {
 
                         <Select onValueChange={setStatus}>
                             <SelectTrigger
-                                className="px-3 max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`px-3 max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${status === "all" ?  "text-gray-400" : "text-black"}`}>
                                 <SelectValue placeholder="Status"/>
                             </SelectTrigger>
                             <SelectContent
@@ -126,7 +126,7 @@ export default function EventComponent() {
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
-                                className="max-w-[400px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                className={`max-w-[400px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${date ? "text-black" : "text-gray-400"} `}>
                                 <Calendar className="mr-2 h-4 w-4"/>
                                 {date ? format(date, "PPP") : <span className="text-md md:text-lg">Pick a date</span>}
                             </Button>
@@ -158,9 +158,10 @@ export default function EventComponent() {
                                         <TableHead className=" lg.min-w-[200px] ">END DATE</TableHead>
                                         <TableHead className=" lg.min-w-[300px] text-start ">LOCATION</TableHead>
                                         <TableHead className=" lg.min-w-[200px] text-center ">STATUS</TableHead>
+                                        <TableHead  className=" min-w-20"></TableHead>
                                     </TableRow>
                                 </TableHeader>
-                                <TableBody>
+                                <TableBody className=" border-gray-300  " >
                                     {currentItems.map((orderData) => (
                                         <TableRow className="hover:bg-gray-100 dark:hover:bg-khotixs-background-dark"
                                                   key={orderData.id}>

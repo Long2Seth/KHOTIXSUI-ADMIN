@@ -1,7 +1,9 @@
 'use client'
 
+import React, { useState } from 'react';
 import CardPayment from "@/components/admin/CardPayment";
 import CreatePaymentMethod from "@/components/admin/CreatePaymentMethod";
+import { Pagination } from "@/components/admin/Pagination";
 
 type ProfileData = {
     image: string;
@@ -50,11 +52,22 @@ const PaymentMethod: ProfileData[] = [
 ];
 
 export default function PaymentMethodComponent() {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    const totalItems = PaymentMethod.length;
+
+    // Get current items
+    const currentItems = PaymentMethod.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
     return (
-        <section className="p-10">
-            <div className="w-full mx-auto">
-                <div className=" flex justify-between ">
-                    <div className=" space-y-2 my-5 ">
+        <section className="p-10 ">
+            <section className="w-full mx-auto">
+                <section className="flex justify-between">
+                    <div className="space-y-2 my-5">
                         <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text">
                             PAYMENT METHODS
                         </h1>
@@ -62,17 +75,22 @@ export default function PaymentMethodComponent() {
                             Real-time insights for data-driven decisions
                         </p>
                     </div>
-                    <CreatePaymentMethod/>
-                    {/*<Button className=" text-secondary-color-text bg-primary-color dark:bg-primary-color hover:bg-primary-color/80 rounded-[6px] ">*/}
-                    {/*    Create*/}
-                    {/*</Button>*/}
-                </div>
+                    <CreatePaymentMethod />
+                </section>
                 <section className="grid grid-cols-1 gap-2 w-full">
-                    {PaymentMethod.map((profileData, index) => (
-                        <CardPayment key={index} profileData={profileData}/>
+                    {currentItems.map((profileData, index) => (
+                        <CardPayment key={index} profileData={profileData} />
                     ))}
                 </section>
-            </div>
+            </section>
+
+            <Pagination
+                totalItems={totalItems}
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                onItemsPerPageChange={setItemsPerPage}
+            />
         </section>
     );
 }
