@@ -4,7 +4,6 @@ import { DataTable } from "@/components/ui/data-table";
 import { mockOrganizer } from "@/mock-data/organizer-data";
 import { User } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
-import { FileSpreadsheet } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { SelectScrollable } from "@/components/admin/SelectComponent";
 import { mockOrganizerSearch } from "@/mock-data/search-column/organizer-search";
@@ -53,7 +52,6 @@ export default function OrganizerPage() {
 
     // Calculate the paginated data based on currentPage and itemsPerPage
     const totalItems = data.length;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
     const startIdx = (currentPage - 1) * itemsPerPage;
     const paginatedData = data.slice(startIdx, startIdx + itemsPerPage);
 

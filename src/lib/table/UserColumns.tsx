@@ -2,14 +2,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@/lib/definitions";
 import Image from "next/image";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { MoreVertical } from "lucide-react";
-import { Edit, Trash2, Power } from "lucide-react";
 import {ActionUserComponent} from "@/components/admin/ActionUserComponent"
 
 export const userColumns: ColumnDef<User>[] = [
