@@ -1,0 +1,20 @@
+services:
+  khotixs_webplatform:
+    image: khotixs_webplatform:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: khotixs_webplatform
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=dev
+      - PORT=3000
+      - GENERATE_SOURCEMAP=false
+    networks:
+      - khotixs_network
+
+networks:
+  khotixs_network:
+    external: true
