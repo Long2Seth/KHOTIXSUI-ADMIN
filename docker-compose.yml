@@ -17,4 +17,3 @@ services:
 
 networks:
   khotixs_network:
-    external: true
