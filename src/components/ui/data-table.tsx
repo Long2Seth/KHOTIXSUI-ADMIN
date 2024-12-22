@@ -32,15 +32,15 @@ export function DataTable<TData, TValue>({
     })
 
     return (
-        <div className={"border rounded-lg"}>
-            <Table className="">
+        <div className={"border rounded-[6px]"}>
+            <Table>
                 {/*<DataTableViewOptions table={table} />*/}
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => {
                                 return (
-                                    <TableHead className=" uppercase " key={header.id}>
+                                    <TableHead className=" uppercase text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text" key={header.id}>
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
@@ -59,11 +59,11 @@ export function DataTable<TData, TValue>({
                             <TableRow
                                 className=" hover:bg-gray-100 dark:hover:bg-khotixs-background-dark "
                                 key={row.id}
-                                data-state={row.getIsSelected() && "selected"}
+                                // data-state={row.getIsSelected() && "selected"}
                             >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell
-                                        className=" text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color px-2 hover:bg-gray-100 dark:hover:bg-khotixs-background-dark "
+                                        className="px-2 py-3 text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color"
                                         key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>

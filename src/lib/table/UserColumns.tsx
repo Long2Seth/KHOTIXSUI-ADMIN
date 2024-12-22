@@ -1,14 +1,8 @@
+'use client'
 import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@/lib/definitions";
 import Image from "next/image";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { MoreVertical } from "lucide-react"; // Import icons
-import { Edit, Trash2, Power } from "lucide-react"; // Additional icons for actions
+import {ActionUserComponent} from "@/components/admin/ActionUserComponent"
 
 export const userColumns: ColumnDef<User>[] = [
     {
@@ -49,10 +43,10 @@ export const userColumns: ColumnDef<User>[] = [
 
             // Apply different styles based on the status value
             if (status === "enabled") {
-                buttonStyle = "bg-green-500 text-white";
+                buttonStyle = "bg-label-free text-white";
                 buttonText = "Enabled";
             } else if (status === "disabled") {
-                buttonStyle = "bg-red-500 text-white";
+                buttonStyle = "bg-label-paid text-white";
                 buttonText = "Disabled";
             } else {
                 buttonStyle = "bg-gray-500 text-white";
@@ -61,7 +55,7 @@ export const userColumns: ColumnDef<User>[] = [
 
             return (
                 <div className="text-center">
-                    <button className={`px-3 py-1 rounded-md ${buttonStyle}`}>
+                    <button className={`px-3  rounded-[6px] py-1  ${buttonStyle}`}>
                         {buttonText}
                     </button>
                 </div>
@@ -72,44 +66,8 @@ export const userColumns: ColumnDef<User>[] = [
         id: "actions",
         enableHiding: false,
         cell: ({ row }) => {
-            const payment = row.original;
-
-            // Check the status and set the action accordingly
-            const isEnabled = payment.status === "enabled";
-            const actionText = isEnabled ? "Disable" : "Enable";
-            const actionIcon = isEnabled ? <Power /> : <Power />; // Power icon for both
-
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <MoreVertical />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        {/* Edit action with yellow color */}
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
-                            className="text-label-free"
-                        >
-                            <Edit className="mr-2" size={16} /> Edit
-                        </DropdownMenuItem>
-                        {/* Delete action with red color */}
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
-                            className="text-red-500"
-                        >
-                            <Trash2 className="mr-2" size={16} /> Delete
-                        </DropdownMenuItem>
-                        {/* Disable/Enable action with gray/green color */}
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
-                            className={isEnabled ? "text-enabled-color" : "text-green-500"}
-                        >
-                            {actionIcon}
-                            {actionText}
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            );
+            const user = row.original;
+            return <ActionUserComponent user={user} />;
         },
     },
 ];
