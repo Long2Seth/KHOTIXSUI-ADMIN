@@ -3,8 +3,10 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { HiOutlineNewspaper } from "react-icons/hi2";
 import { IoMdMore } from "react-icons/io";
 import { Edit, Trash2, Power } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Organizer } from "@/lib/definitions";
 
 type ActionOrganizerComponentProps = {
@@ -29,7 +31,7 @@ export function ActionOrganizerComponent({ organizer }: ActionOrganizerComponent
 
                     {/* Edit Action */}
                     <div
-                        onClick={() => navigator.clipboard.writeText(organizer.id)}
+                        onClick={() => navigator.clipboard.writeText(user.id)}
                         className="text-sm text-yellow-600 text-start hover:bg-gray-100 rounded-[6px] flex cursor-pointer items-center p-1"
                     >
                         <Edit className="mr-2" size={16} />
@@ -38,7 +40,7 @@ export function ActionOrganizerComponent({ organizer }: ActionOrganizerComponent
 
                     {/* Delete Action */}
                     <div
-                        onClick={() => navigator.clipboard.writeText(organizer.id)}
+                        onClick={() => navigator.clipboard.writeText(user.id)}
                         className="text-sm text-red-500 text-start hover:bg-gray-100 rounded-[6px] flex cursor-pointer items-center p-1"
                     >
                         <Trash2 className="mr-2" size={16} />
@@ -47,7 +49,7 @@ export function ActionOrganizerComponent({ organizer }: ActionOrganizerComponent
 
                     {/* Enable/Disable Action */}
                     <div
-                        onClick={() => navigator.clipboard.writeText(organizer.id)}
+                        onClick={() => navigator.clipboard.writeText(user.id)}
                         className={`text-sm ${
                             isEnabled ? "text-gray-500" : "text-green-500"
                         } text-start hover:bg-gray-100 rounded-[6px] flex cursor-pointer items-center p-1`}
