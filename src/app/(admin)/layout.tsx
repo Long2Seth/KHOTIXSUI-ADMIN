@@ -37,7 +37,7 @@ export default async function RootLayout({
                         <NavBar/>
                     </section>
 
-                    <section className="dark:bg-gray-500 dark:backdrop-blur dark:bg-opacity-5 px-20 py-10 ">
+                    <section className="dark:bg-gray-500 dark:backdrop-blur dark:bg-opacity-5 p-10 ">
                         {children}
                     </section>
                 </main>

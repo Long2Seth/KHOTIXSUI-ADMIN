@@ -18,9 +18,9 @@ interface CardPaymentProps {
 export default function CardPayment({profileData}: CardPaymentProps) {
     return (
         <Card className="w-full border-0">
-            <section className="flex justify-between items-center p-5 border border-gray-300 rounded-[6px] hover:bg-white dark:hover:bg-khotixs-background-dark">
+            <section className="flex justify-between sm:items-center p-5 border border-gray-300 rounded-[6px] hover:bg-white dark:hover:bg-khotixs-background-dark">
 
-                <section className=" flex gap-40">
+                <section className=" flex flex-col md:flex-row gap-5 sm:gap-5 md:gap-10 ">
                     <section className="h-auto">
                         <Image
                             unoptimized

@@ -71,7 +71,7 @@ export default function PaymentMethodComponent() {
                         <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text">
                             PAYMENT METHODS
                         </h1>
-                        <p className="text-description-color text-base md:text-lg xl:text-xl">
+                        <p className="text-description-color text-base md:text-lg xl:text-xl dark:text-dark-description-color">
                             Real-time insights for data-driven decisions
                         </p>
                     </div>

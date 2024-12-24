@@ -42,12 +42,12 @@ export default function Profile() {
                     <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text">
                         PROFILE
                     </h1>
-                    <p className=" text-description-color text-base md:text-lg xl:text-xl">
+                    <p className=" text-description-color text-base md:text-lg xl:text-xl dark:text-dark-description-color">
                         Real-time insights for data-driven decisions
                     </p>
                 </div>
 
-                <Card className="w-full border-0 ">
+                <Card className="w-full border-0 shadow-none bg-white dark:bg-khotixs-background-dark ">
                     <section className=" flex gap-[150px] p-5 ">
                         <section
                             className=" w-auto h-auto cursor-pointer "
@@ -68,56 +68,56 @@ export default function Profile() {
                             <section className=" flex flex-col gap-3">
                                 <div className=" flex ">
                                     <div className=" flex gap-2 items-center min-w-[250px] ">
-                                        <PiUserCircleLight className=" text-description-color h-5 w-5 "/>
-                                        <p className=" text-description-color text-sm md:text-base xl:text-lg ">Username</p>
+                                        <PiUserCircleLight className=" text-description-color h-5 w-5 dark:text-gray-400 dark:text-gray-400 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg dark:text-gray-400 ">Username</p>
                                     </div>
-                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg dark:text-dark-description-color ">
                                         {profileData.name}
                                     </p>
                                 </div>
                                 <div className=" flex ">
                                     <div className=" flex gap-2 items-center min-w-[250px] ">
-                                        <TbScanPosition className=" text-description-color h-5 w-5 "/>
-                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Position</p>
+                                        <TbScanPosition className=" text-description-color h-5 w-5 dark:text-gray-400 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg dark:text-gray-400 "> Position</p>
                                     </div>
-                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg dark:text-dark-description-color">
                                         {profileData.role}
                                     </p>
                                 </div>
                                 <div className=" flex ">
                                     <div className=" flex gap-2 items-center min-w-[250px] ">
-                                        <FiPhone className=" text-description-color h-5 w-5 "/>
-                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Phone
+                                        <FiPhone className=" text-description-color h-5 w-5 dark:text-gray-400 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg dark:text-gray-400 "> Phone
                                             Number</p>
                                     </div>
-                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg dark:text-dark-description-color">
                                         {profileData.phone}
                                     </p>
                                 </div>
                                 <div className=" flex ">
                                     <div className=" flex gap-2 items-center min-w-[250px] ">
-                                        <HiOutlineMail className=" text-description-color h-5 w-5 "/>
-                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Email</p>
+                                        <HiOutlineMail className=" text-description-color h-5 w-5 dark:text-gray-400 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg dark:text-gray-400 "> Email</p>
                                     </div>
-                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg dark:text-dark-description-color">
                                         {profileData.email}
                                     </p>
                                 </div>
                                 <div className=" flex ">
                                     <div className=" flex gap-2 items-center min-w-[250px] ">
-                                        <GrLocation className=" text-description-color h-5 w-5 "/>
-                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Address</p>
+                                        <GrLocation className=" text-description-color h-5 w-5 dark:text-gray-400 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg dark:text-gray-400 "> Address</p>
                                     </div>
-                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg dark:text-dark-description-color">
                                         {profileData.address}
                                     </p>
                                 </div>
                                 <div className=" flex ">
                                     <div className=" flex gap-2 items-center min-w-[250px] ">
-                                        <SlNote className=" text-description-color h-5 w-5 "/>
-                                        <p className=" text-description-color text-sm md:text-base xl:text-lg "> Description</p>
+                                        <SlNote className=" text-description-color h-5 w-5 dark:text-gray-400 "/>
+                                        <p className=" text-description-color text-sm md:text-base xl:text-lg dark:text-gray-400 "> Description</p>
                                     </div>
-                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg ">
+                                    <p className=" text-primary-color-text text-sm md:text-base xl:text-lg dark:text-dark-description-color">
                                         {profileData.description}
                                     </p>
                                 </div>
