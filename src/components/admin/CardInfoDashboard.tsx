@@ -39,7 +39,7 @@ const cardData = [
 
 export default function CardInfoDashboard() {
     return (
-        <section className="grid lg:grid-cols-3 2xl:grid-cols-6 gap-5 w-full">
+        <section className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-5 w-full">
             {cardData.map((card, index) => (
                 <Card key={index} className="h-[170px] w-full bg-white dark:bg-khotixs-background-dark pl-[40px] flex flex-col gap-5 justify-center rounded-[6px]">
                     {card.icon}

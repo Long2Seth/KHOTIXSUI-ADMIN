@@ -32,18 +32,18 @@ export function AppSidebar() {
     };
 
     return (
-        <Sidebar collapsible="icon">
-            <div className="flex bg-white dark:bg-khotixs-background-dark items-center justify-center h-16">
+        <Sidebar className=" h-full" collapsible="icon">
+            <div className="flex bg-white dark:bg-khotixs-background-dark items-center justify-center h-20">
                 <Image
                     onClick={() => router.push("/")}
-                    src="/khotixs-logo.png"
+                    src="/khotixs_logo.png"
                     alt="App Logo"
-                    width={40}
+                    width={60}
                     height={40}
                 />
             </div>
-            <SidebarContent className="bg-white dark:bg-khotixs-background-dark">
-                <SidebarGroup>
+            <SidebarContent className=" h-full bg-white dark:bg-khotixs-background-dark">
+                <SidebarGroup className=" h-full ">
                     <SidebarGroupContent>
                         <SidebarMenu className="flex flex-col gap-2">
                             {SideBarData.map((item) => (
@@ -51,7 +51,7 @@ export function AppSidebar() {
                                     <SidebarMenuButton asChild>
                                         <a
                                             href={item.url}
-                                            className={`flex items-center gap-2 h-[35px] rounded-[6px] ${activeItem === item.title ? 'bg-primary-color text-white' : 'hover:bg-secondary-color hover:text-white'}`}
+                                            className={`flex items-center gap-2 h-[35px] rounded-[6px] ${activeItem === item.title ? 'bg-primary-color text-white' : 'hover:bg-gray-200 hover:text-black dark:hover:bg-white dark:hover:backdrop-blur dark:hover:bg-opacity-10 dark:hover:text-white'}`}
                                             onClick={(e) => handleClick(e, item.title, item.url)}
                                         >
                                             <item.icon/>

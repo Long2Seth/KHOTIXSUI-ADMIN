@@ -67,46 +67,47 @@ export default function UserPaymentComponent() {
             </CardHeader>
 
             <CardContent className="bg-white p-10 rounded-[6px] dark:backdrop-blur dark:bg-opacity-5 space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <div className="flex flex-col lg:flex-row gap-4 mb-6">
                     <Input
                         placeholder="Search by event name or ID"
                         value={searchData}
                         onChange={(e) => setSearchData(e.target.value)}
                         className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text dark:border"
                     />
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Select onValueChange={setSelectedLocation}>
-                            <SelectTrigger
-                                className={`min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedLocation === "all" ? "text-gray-400" : "text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
-                                <SelectValue placeholder="Location"/>
-                            </SelectTrigger>
-                            <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectItem value="all">ALL</SelectItem>
-                                {Array.from(new Set(UserPaymentData.map((event) => event.location.split(', ')[1]))).map((city, index) => (
-                                    <SelectItem key={index} value={city}>{city}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                        <Select onValueChange={setSelectTicket}>
-                            <SelectTrigger
-                                className={`max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedTicket === "all" ? "text-gray-400" : "text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
-                                <SelectValue placeholder="Ticket Type"/>
-                            </SelectTrigger>
-                            <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectItem value="all">ALL</SelectItem>
-                                <SelectItem className="dark:hover:text-primary-color-text" value="VIP">VIP</SelectItem>
-                                <SelectItem className="dark:hover:text-primary-color-text" value="PREMIUM">Premium</SelectItem>
-                                <SelectItem className="dark:hover:text-primary-color-text" value="REGULAR">Regular</SelectItem>
-                                <SelectItem className="dark:hover:text-primary-color-text" value="FREE">Free</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <Popover>
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className=" flex flex-col sm:flex-row gap-4 w-full">
+                            <Select onValueChange={setSelectedLocation}>
+                                <SelectTrigger
+                                    className={` max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedLocation === "all" ? "text-gray-400" : "text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                    <SelectValue placeholder="Location"/>
+                                </SelectTrigger>
+                                <SelectContent
+                                    className=" max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                    <SelectItem value="all">All</SelectItem>
+                                    {Array.from(new Set(UserPaymentData.map((event) => event.location.split(', ')[1]))).map((city, index) => (
+                                        <SelectItem key={index} value={city}>{city}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <Select onValueChange={setSelectTicket}>
+                                <SelectTrigger
+                                    className={` min-w-[150px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedTicket === "all" ? "text-gray-400" : "text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                    <SelectValue placeholder="Ticket Type"/>
+                                </SelectTrigger>
+                                <SelectContent
+                                    className=" min-w-[150px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                    <SelectItem value="all">All</SelectItem>
+                                    <SelectItem className="dark:hover:text-primary-color-text" value="VIP">VIP</SelectItem>
+                                    <SelectItem className="dark:hover:text-primary-color-text" value="PREMIUM">Premium</SelectItem>
+                                    <SelectItem className="dark:hover:text-primary-color-text" value="REGULAR">Regular</SelectItem>
+                                    <SelectItem className="dark:hover:text-primary-color-text" value="FREE">Free</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <Popover>
                         <PopoverTrigger asChild>
                             <Button
-                                className={`max-w-[400px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${date ? "text-black" : "text-gray-400"} dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text`}>
+                                className={`w-full md:max-w-[220px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${date ? "text-black" : "text-gray-400"} dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text`}>
                                 <Calendar className="mr-2 h-4 w-4"/>
                                 {date ? format(date, "PPP") : <span className="text-md md:text-lg">Pick a date</span>}
                             </Button>
@@ -123,6 +124,8 @@ export default function UserPaymentComponent() {
                             />
                         </PopoverContent>
                     </Popover>
+                    </div>
+
                 </div>
                 <div className=" overflow-x-auto">
                     <div className="inline-block align-middle">
@@ -131,47 +134,47 @@ export default function UserPaymentComponent() {
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead
-                                            className="px-2 lg:min-w-[200px] text-center text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px] text-center">
                                             ID
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 lg:min-w-[300px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className="min-w-[100px] md:min-w-[150px] xl:min-w-[200px] text-start ">
                                             USER NAME
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[600px] pl-20 text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[300px] md:min-w-[400px] xl:min-w-[500px] pl-20 text-start ">
                                             EVENT NAME
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[400px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className="min-w-[200px] xl:min-w-[400px] text-start">
                                             LOCATION
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px] ">
                                             QTY
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px] ">
                                             PRICE
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px]">
                                             TOTAL
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[200px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px] ">
                                             TICKET TYPE
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[230px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[150px] xl:min-w-[200px] ">
                                             PAYMENT METHOD
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[200px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px] ">
                                             START DATE
                                         </TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:min-w-[200px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text">
+                                            className=" min-w-[100px] xl:min-w-[150px] ">
                                             END DATE
                                         </TableHead>
                                     </TableRow>
@@ -182,52 +185,52 @@ export default function UserPaymentComponent() {
                                             <TableRow className="hover:bg-gray-100 dark:hover:bg-khotixs-background-dark"
                                                       key={orderData.id}>
                                                 <TableCell
-                                                    className="px-2 lg:w-[200px] text-center text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    className=" lg:w-[200px] text-center text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                     {orderData.id}
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    className=" lg:w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                     {orderData.username}
                                                 </TableCell>
                                                 <TableCell className="flex items-center">
-                                                    <Image className="rounded-[6px]" width={90} height={10}
+                                                    <Image className="rounded-[6px]" width={70} height={10}
                                                            src={orderData.image} alt="image"/>
-                                                    <p className="px-2 lg:w-[600px] text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    <p className="pl-2 lg:w-[600px] text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                         {orderData.event}
                                                     </p>
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[400px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    className=" lg:w-[400px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                     {orderData.location}
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[200px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    className=" lg:w-[200px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                     {orderData.qty}
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[200px] text-start font-semibold text-[10px] md:text-sm xl:text-base text-green-600">
+                                                    className=" lg:w-[200px] text-start font-semibold text-[10px] md:text-sm xl:text-base text-green-600 dark:text-green-600">
                                                     {"$" + orderData.price}
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[200px] text-start font-semibold text-green-600 text-[10px] md:text-sm xl:text-base">
+                                                    className=" lg:w-[200px] text-start font-semibold text-green-600 text-[10px] md:text-sm xl:text-base dark:text-green-600">
                                                     {"$" + orderData.qty * orderData.price}
                                                 </TableCell>
                                                 <TableCell className="text-start">
                                                     <Badge
-                                                        className={`text-secondary-color-text text-start text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px] px-2 min-w-[60px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
+                                                        className={`text-secondary-color-text text-start text-[10px] justify-center p-1 md:text-sm font-light rounded-[6px]  min-w-[60px] ${orderData.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : orderData.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : orderData.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : orderData.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
                                                         {orderData.ticketType}
                                                     </Badge>
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color uppercase ">
+                                                    className=" lg:w-[300px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color uppercase ">
                                                     {orderData.paymentMethod}
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[300px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    className=" lg:w-[300px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                     {orderData.startDate}
                                                 </TableCell>
                                                 <TableCell
-                                                    className="px-2 lg:w-[500px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                                                    className=" lg:w-[500px] text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
                                                     {orderData.endDate}
                                                 </TableCell>
                                             </TableRow>

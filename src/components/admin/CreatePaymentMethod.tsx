@@ -43,7 +43,7 @@ export default function CreatePaymentMethod() {
         <Dialog>
             <DialogTrigger asChild>
                 <Button
-                    className="text-sm md:text-base xl:text-lg hover:text-secondary-color-text text-secondary-color-text bg-primary-color hover:bg-primary-color/80 rounded-[6px] px-5"
+                    className="text-sm md:text-base border-none xl:text-lg hover:text-secondary-color-text text-secondary-color-text bg-primary-color hover:bg-primary-color/80 rounded-[6px] px-5"
                     variant="outline"
                 >
                     Create

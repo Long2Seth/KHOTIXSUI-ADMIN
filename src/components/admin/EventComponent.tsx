@@ -74,73 +74,80 @@ export default function EventComponent() {
             </CardHeader>
 
             <CardContent className="bg-white p-10 rounded-[6px] dark:backdrop-blur dark:bg-opacity-5 space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <div className="flex flex-col lg:flex-row gap-4 mb-6">
                     <Input
                         placeholder="Search by event name"
                         value={searchData}
                         onChange={(e) => setSearchData(e.target.value)}
                         className="border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text"
                     />
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Select onValueChange={setCategory}>
-                            <SelectTrigger
-                                className={`min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${category === "all" ?  "text-gray-400" : "text-black"}`}>
-                                <SelectValue placeholder="Category"/>
-                            </SelectTrigger>
-                            <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectItem value="all">ALL</SelectItem>
-                                {categories.map(category => (
-                                    <SelectItem key={category.toLowerCase()} value={category.toLowerCase()}>{category}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                    <div className="flex flex-col lg:flex-row gap-4">
+                        <div className=" flex flex-row gap-4 ">
+                            <Select onValueChange={setCategory}>
+                                <SelectTrigger
+                                    className={` w-full lg:min-w-[120px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${category === "all" ?  "text-gray-400" : "text-black"}`}>
+                                    <SelectValue placeholder="Category"/>
+                                </SelectTrigger>
+                                <SelectContent
+                                    className="w-full lg:w-[150px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                    <SelectItem value="all">All</SelectItem>
+                                    {categories.map(category => (
+                                        <SelectItem key={category.toLowerCase()} value={category.toLowerCase()}>{category}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
 
-                        <Select onValueChange={setLocation}>
-                            <SelectTrigger
-                                className={`min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${location === "all" ?  "text-gray-400" : "text-black"}`}>
-                                <SelectValue placeholder="Location"/>
-                            </SelectTrigger>
-                            <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
-                                <SelectItem value="all">ALL</SelectItem>
-                                {locations.map(location => (
-                                    <SelectItem key={location.toLowerCase()} value={location.toLowerCase()}>{location}</SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                            <Select onValueChange={setLocation}>
+                                <SelectTrigger
+                                    className={`w-full lg:min-w-[100px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${location === "all" ?  "text-gray-400" : "text-black"}`}>
+                                    <SelectValue placeholder="Location"/>
+                                </SelectTrigger>
+                                <SelectContent
+                                    className="w-full lg:w-[150px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
+                                    <SelectItem value="all">All</SelectItem>
+                                    {locations.map(location => (
+                                        <SelectItem key={location.toLowerCase()} value={location.toLowerCase()}>{location}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
 
-                        <Select onValueChange={setStatus}>
-                            <SelectTrigger
-                                className={`px-3 max-w-[250px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${status === "all" ?  "text-gray-400" : "text-black"}`}>
-                                <SelectValue placeholder="Status"/>
-                            </SelectTrigger>
-                            <SelectContent
-                                className="min-w-[200px] max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
-                                <SelectItem value="all">ALL</SelectItem>
-                                <SelectItem value="enable">Enable</SelectItem>
-                                <SelectItem value="disable">Disable</SelectItem>
-                            </SelectContent>
-                        </Select>
+                        <div className=" flex flex-row gap-4 ">
+                            <Select onValueChange={setStatus}>
+                                <SelectTrigger
+                                    className={`px-3 w-full lg:min-w-[80px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${status === "all" ?  "text-gray-400" : "text-black"}`}>
+                                    <SelectValue placeholder="Status"/>
+                                </SelectTrigger>
+                                <SelectContent
+                                    className="w-full lg:w-[110px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text">
+                                    <SelectItem value="all">All</SelectItem>
+                                    <SelectItem value="enable">Enable</SelectItem>
+                                    <SelectItem value="disable">Disable</SelectItem>
+                                </SelectContent>
+                            </Select>
+
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button
+                                        className={`w-full lg:max-w-[220px] md:h-[45px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${date ? "text-black" : "text-gray-400"} `}>
+                                        <Calendar className="mr-2 h-4 w-4"/>
+                                        {date ? format(date, "PPP") : <span className="text-md md:text-lg">Pick a date</span>}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0 bg-gray-100 rounded-[6px]">
+                                    <CalendarComponent
+                                        className="bg-white dark:bg-khotixs-background-dark dark:text-secondary-color-text rounded-[6px]"
+                                        mode="single"
+                                        selected={date}
+                                        onSelect={setDate}
+                                        initialFocus
+                                    />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+
                     </div>
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                className={`max-w-[400px] h-[50px] p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text ${date ? "text-black" : "text-gray-400"} `}>
-                                <Calendar className="mr-2 h-4 w-4"/>
-                                {date ? format(date, "PPP") : <span className="text-md md:text-lg">Pick a date</span>}
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0 bg-gray-100 rounded-[6px]">
-                            <CalendarComponent
-                                className="bg-white dark:bg-khotixs-background-dark dark:text-secondary-color-text rounded-[6px]"
-                                mode="single"
-                                selected={date}
-                                onSelect={setDate}
-                                initialFocus
-                            />
-                        </PopoverContent>
-                    </Popover>
+
                 </div>
                 <div className="overflow-x-auto">
                     <div className="inline-block align-middle">
@@ -148,16 +155,16 @@ export default function EventComponent() {
                             <Table className="">
                                 <TableHeader className="">
                                     <TableRow>
-                                        <TableHead className=" w-auto lg:min-w-[150px] text-center ">ID</TableHead>
-                                        <TableHead className=" lg:min-w-[200px] text-start ">CREATE BY</TableHead>
-                                        <TableHead className=" lg:min-w-[500px] pl-20 text-start ">EVENT
+                                        <TableHead className=" min-w-[100px] xl:min-w-[150px] text-center ">ID</TableHead>
+                                        <TableHead className="min-w-[100px] md:min-w-[150px] xl:min-w-[200px] text-start ">CREATE BY</TableHead>
+                                        <TableHead className=" min-w-[300px] md:min-w-[400px] xl:min-w-[500px] pl-20 text-start ">EVENT
                                             NAME</TableHead>
-                                        <TableHead className=" lg:min-w-[200px] text-start ">CATEGORY</TableHead>
+                                        <TableHead className=" min-w-[150px] md:min-w-[170px] xl:min-w-[200px] text-start ">CATEGORY</TableHead>
 
-                                        <TableHead className=" lg:min-w-[200px] ">START DATE</TableHead>
-                                        <TableHead className=" lg.min-w-[200px] ">END DATE</TableHead>
-                                        <TableHead className=" lg.min-w-[300px] text-start ">LOCATION</TableHead>
-                                        <TableHead className=" lg.min-w-[200px] text-center ">STATUS</TableHead>
+                                        <TableHead className="min-w-[150px] md:min-w-[180px] xl:min-w-[200px] ">START DATE</TableHead>
+                                        <TableHead className=" min-w-[150px] md:min-w-[180px] xl:min-w-[200px] ">END DATE</TableHead>
+                                        <TableHead className=" min-w-[100px] md:min-w-[200px] xl:min-w-[300px] text-start ">LOCATION</TableHead>
+                                        <TableHead className=" min-w-[100px]  md:min-w-[150px] xl:min-w-[200px] text-center ">STATUS</TableHead>
                                         <TableHead  className=" min-w-20"></TableHead>
                                     </TableRow>
                                 </TableHeader>
@@ -165,22 +172,22 @@ export default function EventComponent() {
                                     {currentItems.map((orderData) => (
                                         <TableRow className="hover:bg-gray-100 dark:hover:bg-khotixs-background-dark"
                                                   key={orderData.id}>
-                                            <TableCell className=" lg:w-[150px] text-center ">{orderData.id}</TableCell>
+                                            <TableCell className=" min-w-[100px] xl:min-w-[150px] text-center ">{orderData.id}</TableCell>
                                             <TableCell
-                                                className=" lg.w-[200px] text-start ">{orderData.createBy}</TableCell>
-                                            <TableCell className="flex items-center lg:w-[500px]">
-                                                <Image className="rounded-[6px]" width={90} height={10}
+                                                className=" min-w-[100px] md:min-w-[150px] xl:min-w-[200px] text-start ">{orderData.createBy}</TableCell>
+                                            <TableCell className="flex items-center min-w-[300px] md:min-w-[400px] xl:min-w-[500px]">
+                                                <Image className="rounded-[6px]" width={70} height={10}
                                                        src={orderData.image} alt="image"/>
                                                 <p className=" px-2  text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.eventName}</p>
                                             </TableCell>
                                             <TableCell
-                                                className=" lg:min-w-[200px] text-start ">{orderData.category}</TableCell>
-                                            <TableCell className=" lg:min-w-[200px] ">{orderData.startDate}</TableCell>
-                                            <TableCell className=" lg:min-w-[200px] ">{orderData.endDate}</TableCell>
+                                                className=" min-w-[150px] md:min-w-[170px] xl:min-w-[200px] text-start ">{orderData.category}</TableCell>
+                                            <TableCell className=" min-w-[150px] md:min-w-[180px] xl:min-w-[200px]  ">{orderData.startDate}</TableCell>
+                                            <TableCell className=" min-w-[150px] md:min-w-[180px] xl:min-w-[200px] ">{orderData.endDate}</TableCell>
                                             <TableCell
-                                                className=" lg:min-w-[300px] text-start ">{orderData.location}</TableCell>
+                                                className=" min-w-[100px] md:min-w-[200px] xl:min-w-[300px] text-start ">{orderData.location}</TableCell>
                                             <TableCell
-                                                className="text-center text-description-color text-[10px] md:text-sm xl:text-base">
+                                                className="min-w-[100px]  md:min-w-[150px] xl:min-w-[200px] text-center text-description-color text-[10px] md:text-sm xl:text-base">
                                                 <Badge
                                                     className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${orderData.status === 'enable' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{orderData.status === 'enable' ? 'Enable' : 'Disable'}</Badge>
                                             </TableCell>
