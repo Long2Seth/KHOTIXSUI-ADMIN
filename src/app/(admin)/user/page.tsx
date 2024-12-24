@@ -5,7 +5,6 @@ import { DataTable } from "@/components/ui/data-table";
 import { mockUsers } from "@/mock-data/user-data";
 import { User } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
-import { FileSpreadsheet } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { SelectScrollable } from "@/components/admin/SelectComponent";
 import { mockUserSearch } from "@/mock-data/search-column/user-search";
@@ -18,7 +17,7 @@ async function getData(): Promise<User[]> {
 }
 
 export default function UserPage() {
-    const [searchData, setSearchData] = useState("");
+    // const [searchData, setSearchData] = useState("");
     const [data, setData] = useState<User[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -54,7 +53,7 @@ export default function UserPage() {
 
     // Calculate the paginated data based on currentPage and itemsPerPage
     const totalItems = data.length;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    // const totalPages = Math.ceil(totalItems / itemsPerPage);
     const startIdx = (currentPage - 1) * itemsPerPage;
     const paginatedData = data.slice(startIdx, startIdx + itemsPerPage);
 

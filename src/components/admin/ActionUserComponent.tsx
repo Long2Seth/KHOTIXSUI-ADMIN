@@ -3,10 +3,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { HiOutlineNewspaper } from "react-icons/hi2";
 import { IoMdMore } from "react-icons/io";
 import { Edit, Trash2, Power } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { User } from "@/lib/definitions";
 
 type ActionUserComponentProps = {
