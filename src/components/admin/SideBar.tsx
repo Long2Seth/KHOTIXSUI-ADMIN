@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { SideBarData } from "@/lib/admin/SideBar";
 
-export function AppSidebar() {
+export function SideBar() {
     const [activeItem, setActiveItem] = useState<string>('');
     const router = useRouter();
     const pathname = usePathname();

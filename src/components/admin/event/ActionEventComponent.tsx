@@ -4,7 +4,7 @@ import { HiOutlineNewspaper } from "react-icons/hi2";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { IoMdMore } from "react-icons/io";
 import React from "react";
-import { EventDetail } from "@/components/admin/EventDetail";
+import { EventDetail } from "@/components/admin/event/EventDetail";
 import {useRouter} from "next/navigation";
 
 type ActionEventComponentProps = {

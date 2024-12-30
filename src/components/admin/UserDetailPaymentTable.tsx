@@ -14,7 +14,7 @@ import {Badge} from "@/components/ui/badge";
 import Image from "next/image";
 import {orderData} from "@/lib/admin/OrderDate";
 import {Pagination} from "@/components/admin/Pagination";
-import {UserPaymentData} from "@/lib/admin/UserPaymentData";
+import {userPaymentData} from "@/lib/admin/UserPaymentData";
 
 export default function UserDetailPaymentTable() {
     const [searchData, setSearchData] = useState("");
@@ -23,7 +23,7 @@ export default function UserDetailPaymentTable() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
 
     // Filter payments based on searchData term
-    const filterOrderData = UserPaymentData.filter(attendance =>
+    const filterOrderData = userPaymentData.filter(attendance =>
         attendance.event.toLowerCase().includes(searchData.toLowerCase()) ||
         attendance.id.toString().includes(searchData.toLowerCase())
     );

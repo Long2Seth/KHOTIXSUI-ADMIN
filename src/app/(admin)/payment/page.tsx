@@ -1,9 +1,9 @@
-import UserPaymentComponent from "@/components/admin/UserPaymentComponent";
+import {PaymentComponent} from "@/components/admin/payment/data-table";
 
-export default function PaymentComponent(){
+export default function PaymentPage(){
     return(
         <section>
-            <UserPaymentComponent/>
+            <PaymentComponent/>
         </section>
     )
 }

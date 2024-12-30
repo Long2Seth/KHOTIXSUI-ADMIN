@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { IoMdMore } from "react-icons/io";
 import { Edit, Trash2, Power } from "lucide-react";
-import { User } from "@/lib/definitions";
+import {OrganizerType} from "@/lib/admin/OrganizerData";
 
-type ActionUserComponentProps = {
-    user: User;
+type ActionOrganizerComponentProps = {
+    organizer: OrganizerType;
 };
 
-export function ActionUserComponent({ user }: ActionUserComponentProps) {
+export function ActionOrganizerComponent({ organizer }: ActionOrganizerComponentProps) {
     // The component implementation
-    const isEnabled = user.status === "enabled";
+    const isEnabled = organizer.status === "enabled";
     const actionText = isEnabled ? "Disable" : "Enable";
     const actionIcon = <Power className="mr-2" size={16} />;
 
@@ -29,7 +29,7 @@ export function ActionUserComponent({ user }: ActionUserComponentProps) {
 
                     {/* Edit Action */}
                     <div
-                        onClick={() => navigator.clipboard.writeText(user.id)}
+                        onClick={() => navigator.clipboard.writeText(organizer.id)}
                         className="text-sm text-yellow-600 text-start hover:bg-gray-100 rounded-[6px] flex cursor-pointer items-center p-1"
                     >
                         <Edit className="mr-2" size={16} />
@@ -38,7 +38,7 @@ export function ActionUserComponent({ user }: ActionUserComponentProps) {
 
                     {/* Delete Action */}
                     <div
-                        onClick={() => navigator.clipboard.writeText(user.id)}
+                        onClick={() => navigator.clipboard.writeText(organizer.id)}
                         className="text-sm text-red-500 text-start hover:bg-gray-100 rounded-[6px] flex cursor-pointer items-center p-1"
                     >
                         <Trash2 className="mr-2" size={16} />
@@ -47,7 +47,7 @@ export function ActionUserComponent({ user }: ActionUserComponentProps) {
 
                     {/* Enable/Disable Action */}
                     <div
-                        onClick={() => navigator.clipboard.writeText(user.id)}
+                        onClick={() => navigator.clipboard.writeText(organizer.id)}
                         className={`text-sm ${
                             isEnabled ? "text-gray-500" : "text-green-500"
                         } text-start hover:bg-gray-100 rounded-[6px] flex cursor-pointer items-center p-1`}

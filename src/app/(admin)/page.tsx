@@ -1,9 +1,9 @@
-import DashboardComponent from "@/components/admin/DashboardComponent";
+import DashboardComponent from "@/components/admin/dashboard/DashboardComponent";
 
 export default function Dashboard() {
     return (
-        <div>
+        <section>
             <DashboardComponent/>
-        </div>
+        </section>
     );
 }

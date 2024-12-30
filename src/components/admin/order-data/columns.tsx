@@ -1,0 +1,86 @@
+"use client";
+
+import {ColumnDef} from "@tanstack/react-table";
+import {OrderData} from "@/lib/admin/OrderDate";
+import {Badge} from "@/components/ui/badge";
+import React from "react";
+import Image from "next/image";
+
+export const columnsOrder: ColumnDef<OrderData>[] = [
+    {
+        accessorKey: "id",
+        header: () => <div className="min-w-[130px] xl:min-w-[150px] ">ID</div>,
+        cell: ({row}) => <div className="">{row.getValue("id") as string}</div>,
+    },
+    {
+        accessorKey: "eventName",
+        header: () => <div className="min-w-[300px] md:min-w-[400px] xl:min-w-[500px] pl-20 text-start">EVENT
+            NAME</div>,
+        cell: ({row}) => (
+            <div className=" flex items-center ">
+                <Image
+                    className="rounded-[6px] h-auto w-[50px] md:w-[70px] "
+                    width={70}
+                    height={10}
+                    src={row.original.image}
+                    alt="image"/>
+                <p className="px-2 lg:w-[500px] text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
+                    {row.original.eventName}
+                </p>
+            </div>
+        ),
+    },
+    {
+        accessorKey: "startDate",
+        header: () => <div className="min-w-[150px] md:min-w-[180px] xl:min-w-[200px]">START DATE</div>,
+        cell: ({row}) => <div>{row.getValue("startDate") as string}</div>,
+    },
+    {
+        accessorKey: "endDate",
+        header: () => <div className="min-w-[150px] md:min-w-[180px] xl:min-w-[200px]">END DATE</div>,
+        cell: ({row}) => <div>{row.getValue("endDate") as string}</div>,
+    },
+    {
+        accessorKey: "location",
+        header: () => <div className="min-w-[200px] md:min-w-[250px] xl:min-w-[330px] text-start">LOCATION</div>,
+        cell: ({row}) => <div className="text-start">{row.getValue("location") as string}</div>,
+    },
+    {
+        accessorKey: "qty",
+        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">QTY</div>,
+        cell: ({row}) => <div className="text-start">{row.getValue("qty") as number}</div>,
+    },
+    {
+        accessorKey: "price",
+        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">PRICE</div>,
+        cell: ({row}) => <div
+            className="text-start font-semibold text-green-600">{"$" + (row.getValue("price") as number)}</div>,
+    },
+    {
+        accessorKey: "total",
+        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">TOTAL</div>,
+        cell: ({row}) => {
+            const qty = row.getValue("qty") as number;
+            const price = row.getValue("price") as number;
+            return <div className="text-start font-semibold text-green-600">{"$" + (qty * price)}</div>;
+        },
+    },
+    {
+        accessorKey: "ticketType",
+        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">TICKET TYPE</div>,
+        cell: ({row}) => (
+            <Badge
+                className={`text-secondary-color-text text-start text-[10px] justify-center md:text-sm font-light rounded-[6px] min-w-[60px] ${row.original.ticketType === 'VIP' ? 'bg-label-vip hover:bg-label-vip/90' : row.original.ticketType === 'PREMIUM' ? 'bg-label-premium hover:bg-label-premium/90' : row.original.ticketType === 'REGULAR' ? 'bg-label-regular hover:bg-label-regular/90' : row.original.ticketType === 'FREE' ? 'bg-label-free hover:bg-label-free/90' : ''}`}>
+                {row.original.ticketType}
+            </Badge>
+        ),
+    },
+    {
+        accessorKey: "status",
+        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">STATUS</div>,
+        cell: ({row}) => (
+            <Badge
+                className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${row.original.status === 'publish' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{row.original.status === 'publish' ? 'Publish' : 'Unpublish'}</Badge>
+        )
+    },
+];

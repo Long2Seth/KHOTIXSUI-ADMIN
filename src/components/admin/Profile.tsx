@@ -9,7 +9,7 @@ import {HiOutlineMail} from "react-icons/hi";
 import {GrLocation} from "react-icons/gr";
 import {SlNote} from "react-icons/sl";
 import Image from "next/image";
-import EditProfile from "@/components/admin/EditProfile";
+import EditProfile from "@/components/admin/info-user/EditProfile";
 
 type ProfileData = {
     name: string

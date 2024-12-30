@@ -1,4 +1,4 @@
-import EventComponent from "@/components/admin/EventComponent";
+import {EventComponent} from "@/components/admin/event/data-table";
 
 export default function EventPage() {
     return (

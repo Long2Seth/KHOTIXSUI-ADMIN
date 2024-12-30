@@ -1,8 +1,7 @@
 'use client'
 
-import CardInfoDashboard from "@/components/admin/CardInfoDashboard";
-import {UserBarChart} from "@/components/admin/UserBarChart";
-import {OrganizerBarChart} from "@/components/admin/OrganizerBarChart";
+import CardInfoDashboard from "@/components/admin/dashboard/CardInfoDashboard";
+import {UserBarChart} from "@/components/admin/dashboard/UserBarChart";
 
 export default function DashboardComponent() {
     return (
@@ -24,8 +23,6 @@ export default function DashboardComponent() {
                 <CardInfoDashboard/>
 
                 <UserBarChart/>
-
-                <OrganizerBarChart/>
 
 
             </section>

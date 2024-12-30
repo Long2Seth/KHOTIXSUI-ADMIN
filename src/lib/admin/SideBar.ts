@@ -2,6 +2,8 @@ import { LuUser } from "react-icons/lu";
 import { FiUsers } from "react-icons/fi";
 import { PiIdentificationCardThin } from "react-icons/pi";
 import { RiCalendarEventLine, RiSecurePaymentLine, RiFolderChartLine, RiBarChartBoxAiLine } from "react-icons/ri";
+import { VscFeedback } from "react-icons/vsc";
+
 
 
 export const SideBarData = [
@@ -39,5 +41,10 @@ export const SideBarData = [
         title: "Payment Method",
         url: "/payment-method",
         icon: PiIdentificationCardThin,
+    },
+    {
+        title: "Feedback",
+        url: "/feedback",
+        icon: VscFeedback,
     },
 ];

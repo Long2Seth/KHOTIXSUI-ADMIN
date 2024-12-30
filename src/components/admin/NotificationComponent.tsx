@@ -39,7 +39,7 @@ export function NotificationComponent() {
             <NavigationMenuList>
                 <NavigationMenuItem className=" left-[-100px] ">
                     <NavigationMenuTrigger>
-                        <IoIosNotificationsOutline className="h-8 w-8 text-primary-color" />
+                        <IoIosNotificationsOutline className="h-12 w-12 p-2 text-primary-color hover:bg-primary-color hover:text-dark-description-color rounded-[6px] " />
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className=" flex ">

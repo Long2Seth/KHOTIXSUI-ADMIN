@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import CardPayment from "@/components/admin/CardPayment";
-import CreatePaymentMethod from "@/components/admin/CreatePaymentMethod";
+import CreatePaymentMethod from "@/components/admin/payment-type/CreatePaymentMethod";
 import { Pagination } from "@/components/admin/Pagination";
 
 type ProfileData = {
@@ -64,10 +64,10 @@ export default function PaymentMethodComponent() {
     );
 
     return (
-        <section className="p-10 ">
+        <section>
             <section className="w-full mx-auto">
                 <section className="flex justify-between">
-                    <div className="space-y-2 my-5">
+                    <div className="space-y-2 mb-5">
                         <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text">
                             PAYMENT METHODS
                         </h1>
