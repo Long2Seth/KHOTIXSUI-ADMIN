@@ -68,7 +68,7 @@ export const columnsPayment: ColumnDef<UserPaymentType>[] = [
     {
         accessorKey: "endDate",
         header: () => <div className="min-w-[150px] md:min-w-[180px] xl:min-w-[200px]">PAYMENT METHOD</div>,
-        cell: ({row}) => <div>{row.getValue("endDate") as string}</div>,
+        cell: ({row}) => <div>{row.original.paymentMethod}</div>,
     },
     {
         accessorKey: "endDate",

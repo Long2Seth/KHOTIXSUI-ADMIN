@@ -117,9 +117,9 @@ export default function EventNotificationComponent() {
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead
-                                            className="px-2 py-5 w- lg:w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">ID</TableHead>
+                                            className="px-2 py-5 w- lg:min-w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">ID</TableHead>
                                         <TableHead
-                                            className="px-2 py-5 lg:w-[600px] pl-20 text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">EVENT
+                                            className="px-2 py-5 lg:min-w-[600px] pl-20 text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">EVENT
                                             NAME</TableHead>
                                         <TableHead
                                             className="px-2 py-5 lg:w-[320px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">EVENT
@@ -146,7 +146,7 @@ export default function EventNotificationComponent() {
                                                             className="px-2 py-5 lg:w-[150px] text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.id}
                                                         </TableCell>
 
-                                                        <TableCell className=" px-2 py-3 flex items-center text-start w-[600px]     ">
+                                                        <TableCell className="px-2 py-5 lg:w-[600px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text flex items-center  ">
                                                             <Image className="rounded-[6px]" width={80} height={10} src={orderData.image} alt="image" />
                                                             <p className="px-2 text-description-color justify-center text-start text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{orderData.eventName}</p>
                                                         </TableCell>
@@ -175,10 +175,10 @@ export default function EventNotificationComponent() {
                                                 <TableHeader>
                                                     <TableRow>
                                                         <TableHead
-                                                            className="px-2 py-5 w- lg:w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">TICKET
+                                                            className="px-2 py-5 w- lg:min-w-[150px] text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">TICKET
                                                             ID</TableHead>
                                                         <TableHead
-                                                            className="px-2 py-5 lg:w-[600px] pl-20 text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">TICKET NAME </TableHead>
+                                                            className="px-2 py-5 lg:min-w-[600px] pl-20 text-start text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">TICKET NAME </TableHead>
                                                         <TableHead
                                                             className="px-2 py-5 lg:w-[320px] text-title-color text-sm md:text-md xl:text-lg dark:text-secondary-color-text ">TICKET TYPE</TableHead>
                                                         <TableHead
@@ -196,7 +196,7 @@ export default function EventNotificationComponent() {
                                                             <TableCell
                                                                 className="px-2 text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{ticket.id}</TableCell>
                                                             <TableCell
-                                                                className="px-2 text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{ticket.name}</TableCell>
+                                                                className="px-2 text-start pl-20 text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{ticket.name}</TableCell>
                                                             <TableCell
                                                                 className="px-2 text-start text-description-color text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">{ticket.type}</TableCell>
                                                             <TableCell

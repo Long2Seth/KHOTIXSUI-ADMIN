@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { LuUser } from "react-icons/lu";
-import { FiUsers } from "react-icons/fi";
+// import { LuUser } from "react-icons/lu";
+// import { FiUsers } from "react-icons/fi";
 import { RiCalendarEventLine } from "react-icons/ri";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { cn } from "@/lib/utils";
@@ -16,16 +16,16 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const components = [
-    {
-        title: "Users",
-        href: "/notification/user",
-        icon: <LuUser className="h-5 w-5" />,
-    },
-    {
-        title: "Organizer",
-        href: "/notification/organizer",
-        icon: <FiUsers className="h-5 w-5" />,
-    },
+    // {
+    //     title: "Users",
+    //     href: "/notification/user",
+    //     icon: <LuUser className="h-5 w-5" />,
+    // },
+    // {
+    //     title: "Organizer",
+    //     href: "/notification/organizer",
+    //     icon: <FiUsers className="h-5 w-5" />,
+    // },
     {
         title: "Event",
         href: "/notification/event",

@@ -50,7 +50,7 @@ export const columnEvent: ColumnDef<EventType>[] = [
     {
         accessorKey: "location",
         header: () => <div className="min-w-[200px] md:min-w-[250px] xl:min-w-[330px] text-start">CATEGORY</div>,
-        cell: ({row}) => <div className="text-start">{row.getValue("location") as string}</div>,
+        cell: ({row}) => <div className="text-start">{row.original.category}</div>,
     },
     {
         accessorKey: "startDate",

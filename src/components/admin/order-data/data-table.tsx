@@ -42,6 +42,7 @@ import * as XLSX from "xlsx";
 import Image from "next/image";
 
 const locations = Array.from(new Set(orderData.map(order => order.location)));
+const ticketTypes = Array.from(new Set(orderData.map(order => order.ticketType)));
 
 export function OrderDataTable() {
     const [sorting, setSorting] = useState<SortingState>([]);
@@ -52,16 +53,18 @@ export function OrderDataTable() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [selectedLocation, setSelectedLocation] = useState("all");
     const [selectedStatus, setSelectedStatus] = useState("all");
+    const [selectedTicketType, setSelectedTicketType] = useState("all");
     const [date, setDate] = useState<Date | undefined>(undefined);
 
     const filteredData = useMemo(() => {
         return orderData.filter((item) => {
             const matchesLocation = selectedLocation === "all" || item.location === selectedLocation;
             const matchesStatus = selectedStatus === "all" || item.status === selectedStatus;
+            const matchesTicketType = selectedTicketType === "all" || item.ticketType === selectedTicketType;
             const matchesDate = !date || new Date(item.startDate).toDateString() === date.toDateString();
-            return matchesLocation && matchesStatus && matchesDate;
+            return matchesLocation && matchesStatus && matchesTicketType && matchesDate;
         });
-    }, [selectedLocation, selectedStatus, date]);
+    }, [selectedLocation, selectedStatus, selectedTicketType, date]);
 
     const paginatedData = useMemo(
         () => filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage),
@@ -151,10 +154,24 @@ export function OrderDataTable() {
                                 <SelectItem value="unpublish">Draft</SelectItem>
                             </SelectContent>
                         </Select>
+
+                        <Select onValueChange={setSelectedTicketType}>
+                            <SelectTrigger
+                                className={`w-full lg:max-w-[250px] h-[50px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedTicketType === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                <SelectValue placeholder="Ticket Type "/>
+                            </SelectTrigger>
+                            <SelectContent
+                                className="w-full lg:max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
+                                <SelectItem value="all">All</SelectItem>
+                                {ticketTypes.map(ticketType => (
+                                    <SelectItem key={ticketType} value={ticketType}>{ticketType}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </section>
 
                     <section className="w-full lg:w-auto flex flex-col sm:flex-row gap-2 ">
-                            <Popover>
+                        <Popover>
                             <PopoverTrigger asChild>
                                 <Button
                                     className={`w-full lg:max-w-[220px] h-[50px]  p-5 border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${date ? "text-black" : "text-gray-400"} dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text`}>
@@ -272,6 +289,5 @@ export function OrderDataTable() {
                 />
             </section>
         </section>
-    )
-        ;
+    );
 }

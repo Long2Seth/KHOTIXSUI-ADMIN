@@ -41,40 +41,35 @@ import {useMemo, useState} from "react";
 import * as XLSX from "xlsx";
 import Image from "next/image";
 
-const locations = Array.from(
-    new Set(userPaymentData.map(order => order.location))
-);
+const locations = Array.from(new Set(userPaymentData.map(order => order.location)));
+const ticketTypes = Array.from(new Set(userPaymentData.map(order => order.ticketType)));
+const genders = Array.from(new Set(userPaymentData.map(order => order.gender)));
+const paymentMethods = Array.from(new Set(userPaymentData.map(order => order.paymentMethod)));
 
 export function PaymentComponent() {
 
     const [sorting, setSorting] = useState<SortingState>([]);
-
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-
     const [rowSelection, setRowSelection] = useState({});
-
     const [currentPage, setCurrentPage] = useState(1);
-
     const [itemsPerPage, setItemsPerPage] = useState(10);
-
     const [selectedLocation, setSelectedLocation] = useState("all");
-
-    const [selectedStatus, setSelectedStatus] = useState("all");
-
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("all");
+    const [selectedTicketType, setSelectedTicketType] = useState("all");
+    const [selectedGender, setSelectedGender] = useState("all");
     const [date, setDate] = useState<Date | undefined>(undefined);
-
-
-
 
     const filteredData = useMemo(() => {
         return userPaymentData.filter((item) => {
             const matchesLocation = selectedLocation === "all" || item.location === selectedLocation;
             const matchesDate = !date || new Date(item.startDate).toDateString() === date.toDateString();
-            return matchesLocation && matchesDate;
+            const matchesTicketType = selectedTicketType === "all" || item.ticketType === selectedTicketType;
+            const matchesGender = selectedGender === "all" || item.gender === selectedGender;
+            const matchesPaymentMethod = selectedPaymentMethod === "all" || item.paymentMethod === selectedPaymentMethod;
+            return matchesLocation && matchesDate && matchesTicketType && matchesGender && matchesPaymentMethod;
         });
-    }, [selectedLocation, selectedStatus, date]);
+    }, [selectedLocation, selectedPaymentMethod, date, selectedTicketType, selectedGender]);
 
     const paginatedData = useMemo(
         () => filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage),
@@ -152,16 +147,45 @@ export function PaymentComponent() {
                             </SelectContent>
                         </Select>
 
-                        <Select onValueChange={setSelectedStatus}>
+                        <Select onValueChange={setSelectedPaymentMethod}>
                             <SelectTrigger
-                                className={`w-full lg:max-w-[250px] h-[50px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedStatus === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
-                                <SelectValue placeholder="Status "/>
+                                className={`w-full lg:max-w-[250px] h-[50px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedPaymentMethod === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                <SelectValue placeholder="Payment Method "/>
                             </SelectTrigger>
                             <SelectContent
                                 className="w-full lg:max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
                                 <SelectItem value="all">All</SelectItem>
-                                <SelectItem value="publish">Published</SelectItem>
-                                <SelectItem value="unpublish">Draft</SelectItem>
+                                {paymentMethods.map(method => (
+                                    <SelectItem key={method} value={method}>{method}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+
+                        <Select onValueChange={setSelectedGender}>
+                            <SelectTrigger
+                                className={`w-full lg:max-w-[250px] h-[50px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedGender === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                <SelectValue placeholder="Gender "/>
+                            </SelectTrigger>
+                            <SelectContent
+                                className="w-full lg:max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
+                                <SelectItem value="all">All</SelectItem>
+                                {genders.map(gender => (
+                                    <SelectItem key={gender} value={gender}>{gender}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+
+                        <Select onValueChange={setSelectedTicketType}>
+                            <SelectTrigger
+                                className={`w-full lg:max-w-[250px] h-[50px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedTicketType === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                <SelectValue placeholder="Ticket Type "/>
+                            </SelectTrigger>
+                            <SelectContent
+                                className="w-full lg:max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
+                                <SelectItem value="all">All</SelectItem>
+                                {ticketTypes.map(ticketType => (
+                                    <SelectItem key={ticketType} value={ticketType}>{ticketType}</SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
                     </section>
@@ -285,6 +309,5 @@ export function PaymentComponent() {
                 />
             </section>
         </section>
-    )
-        ;
+    );
 }

@@ -42,6 +42,7 @@ import Image from "next/image";
 import {allEventData} from "@/lib/admin/Event";
 
 const locations = Array.from(new Set(allEventData.map(order => order.location)));
+const categories = Array.from(new Set(allEventData.map(order => order.category)));
 
 export function EventComponent() {
 
@@ -53,6 +54,7 @@ export function EventComponent() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [selectedLocation, setSelectedLocation] = useState("all");
     const [selectedStatus, setSelectedStatus] = useState("all");
+    const [selectedCategory, setSelectedCategory] = useState("all");
     const [date, setDate] = useState<Date | undefined>(undefined);
     const [eventName, setEventName] = useState("");
     const [gender, setGender] = useState("all");
@@ -62,10 +64,12 @@ export function EventComponent() {
             const matchesLocation = selectedLocation === "all" || item.location === selectedLocation;
             const matchesDate = !date || new Date(item.startDate).toDateString() === date.toDateString();
             const matchesEventName = item.eventName.toLowerCase().includes(eventName.toLowerCase());
-            const matchesGender = gender === "all" || item.gender === gender;
-            return matchesLocation && matchesDate && matchesEventName && matchesGender;
+            const matchesGender = gender === "all" || item.gender.toLowerCase() === gender.toLowerCase();
+            const matchesStatus = selectedStatus === "all" || item.status === selectedStatus;
+            const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
+            return matchesLocation && matchesDate && matchesEventName && matchesGender && matchesStatus && matchesCategory;
         });
-    }, [selectedLocation, selectedStatus, date, eventName, gender]);
+    }, [selectedLocation, selectedStatus, date, eventName, gender, selectedCategory]);
 
     const paginatedData = useMemo(
         () => filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage),
@@ -165,6 +169,20 @@ export function EventComponent() {
                                 <SelectItem value="female">Female</SelectItem>
                             </SelectContent>
                         </Select>
+
+                        <Select onValueChange={setSelectedCategory}>
+                            <SelectTrigger
+                                className={`w-full lg:max-w-[250px] h-[50px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 ${selectedCategory === "all" ? "text-gray-400 dark:text-gray-400" : "text-black dark:text-black"} dark:backdrop-blur dark:bg-opacity-5 dark:text-secondary-color-text`}>
+                                <SelectValue placeholder="Category "/>
+                            </SelectTrigger>
+                            <SelectContent
+                                className="w-full lg:max-w-[300px] border-[1px] text-md md:text-lg bg-white border-light-border-color rounded-[6px] placeholder:text-gray-400 text-primary-color-text dark:backdrop-blur dark:bg-opacity-0 dark:text-secondary-color-text">
+                                <SelectItem value="all">All</SelectItem>
+                                {categories.map(category => (
+                                    <SelectItem key={category} value={category}>{category}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </section>
 
                     <section className="w-full lg:w-auto flex flex-col sm:flex-row gap-2 ">
@@ -220,8 +238,6 @@ export function EventComponent() {
                     </section>
 
                 </section>
-
-
 
                 <div className="rounded-md border">
                     <Table>
@@ -289,6 +305,5 @@ export function EventComponent() {
                 />
             </section>
         </section>
-    )
-        ;
+    );
 }
