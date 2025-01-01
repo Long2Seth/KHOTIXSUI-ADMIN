@@ -39,6 +39,10 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {format} from "date-fns";
 import {Calendar as CalendarComponent} from "@/components/ui/calendar";
 
+
+type FeedbackItem ={
+    createDate: string;
+}
 export function FeedbackComponent() {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -48,7 +52,7 @@ export function FeedbackComponent() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [date, setDate] = useState<Date | undefined>(undefined);
 
-    const matchDate = (item: any) => {
+    const matchDate = (item: FeedbackItem) => {
         return date ? format(new Date(item.createDate), "PPP") === format(date, "PPP") : true;
     };
 
