@@ -1,21 +1,27 @@
-
-import {ColumnDef} from "@tanstack/react-table";
-import {Badge} from "@/components/ui/badge";
+import { ColumnDef } from "@tanstack/react-table";
+import { Badge } from "@/components/ui/badge";
 import React from "react";
 import Image from "next/image";
-import {ActionOrganizerComponent} from "@/components/admin/organizer/ActionOrganizerComponent";
-import {OrganizerType} from "@/lib/admin/OrganizerData";
+import { ActionOrganizerComponent } from "@/components/admin/organizer/ActionOrganizerComponent";
+import { OrganizerType } from "@/lib/admin/OrganizerData";
+import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 
 export const columnsOrganizer: ColumnDef<OrganizerType>[] = [
     {
         accessorKey: "ID",
-        header: () => <div className="min-w-[150px] xl:mi">ID</div>,
-        cell: ({row}) => <div>{row.original.id}</div>,
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="ID" />
+        ),
+        cell: ({ row }) => <div>{row.original.id}</div>,
+        enableSorting: false,
+        enableHiding: false,
     },
     {
-        accessorKey: "username", // Ensure this matches the key in your data
-        header: () => <div className="min-w-[200px] md:min-w-[300px] xl:min-w-[300px] text-start">USER NAME</div>,
-        cell: ({row}) => (
+        accessorKey: "username",
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="USER NAME" />
+        ),
+        cell: ({ row }) => (
             <div className="flex items-center">
                 <Image
                     className="rounded-[6px] h-auto w-[40px]"
@@ -25,45 +31,67 @@ export const columnsOrganizer: ColumnDef<OrganizerType>[] = [
                     alt="image"
                 />
                 <p className="px-2 text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
-                    {row.original.username}
+                    {row.getValue("username")}
                 </p>
             </div>
         ),
-        // filterFn: 'includesString',
     },
     {
         accessorKey: "gender",
-        header: () => <div className="min-w-[150px] md:min-w-[180px] xl:min-w-[200px]">GENDER</div>,
-        cell: ({row}) => <div>{row.original.gender}</div>,
-    },{
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="GENDER" />
+        ),
+        cell: ({ row }) => <div>{row.getValue("gender")}</div>,
+    },
+    {
         accessorKey: "email",
-        header: () => <div className="min-w-[150px] md:min-w-[180px] xl:min-w-[200px]">EMAIL</div>,
-        cell: ({row}) => <div>{row.original.email}</div>,
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="EMAIL" />
+        ),
+        cell: ({ row }) => <div>{row.getValue("email")}</div>,
     },
     {
         accessorKey: "phone Number",
-        header: () => <div className="min-w-[200px] md:min-w-[250px] text-start">PHONE NUMBER</div>,
-        cell: ({row}) => <div className="text-start">{row.original.phoneNumber}</div>,
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="PHONE NUMBER" />
+        ),
+        cell: ({ row }) => <div className="text-start">{row.getValue("phone Number")}</div>,
     },
     {
         accessorKey: "verified",
-        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">VERIFY</div>,
-        cell: ({row}) => (
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="VERIFY" />
+        ),
+        cell: ({ row }) => (
             <Badge
-                className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${row.original.verified ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{row.original.verified ? 'Accept' : 'Padding'}</Badge>
-        )
+                className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${
+                    row.getValue("verified") ? "bg-label-free text-label-text-primary hover:bg-label-free/90" : "bg-label-paid text-label-text-primary hover:bg-label-paid/90"
+                }`}
+            >
+                {row.getValue("verified") ? "Accept" : "Padding"}
+            </Badge>
+        ),
     },
     {
         accessorKey: "status",
-        header: () => <div className="min-w-[100px] md:min-w-[200px] text-start">STATUS</div>,
-        cell: ({row}) => (
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title="STATUS" />
+        ),
+        cell: ({ row }) => (
             <Badge
-                className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${row.original.status.toLowerCase() === 'enable' ? 'bg-label-free text-label-text-primary hover:bg-label-free/90' : 'bg-label-paid text-label-text-primary hover:bg-label-paid/90'}`}>{row.original.status === 'enable' ? 'Enable' : 'Disable'}</Badge>
-        )
+                className={`rounded-[6px] text[10px] md:text-base justify-center font-normal ${
+                    (row.getValue("status") as string).toLowerCase() === "enable"
+                        ? "bg-label-free text-label-text-primary hover:bg-label-free/90"
+                        : "bg-label-paid text-label-text-primary hover:bg-label-paid/90"
+                }`}
+            >
+                {(row.getValue("status") as string) === "enable" ? "Enable" : "Disable"}
+            </Badge>
+        ),
     },
     {
         accessorKey: "action",
         header: () => <div className="min-w-[100px]"></div>,
-        cell: ({row}) => <ActionOrganizerComponent organizer={row.original}/>
-    }
+        cell: ({ row }) => <ActionOrganizerComponent organizer={row.original} />,
+    },
 ];

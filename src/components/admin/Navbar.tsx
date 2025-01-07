@@ -23,7 +23,7 @@ export default function     NavBar() {
                     src="/phanmai.png"
                     alt="profile-user"
                     unoptimized />
-                <Button className=" p-5 text-sm md:text-base xl:text-lg bg-white border border-primary-color text-primary-color rounded-[6px] dark:bg-khotixs-background-dark">
+                <Button className=" p-5 text-sm md:text-base xl:text-lg bg-white border border-primary-color text-primary-color rounded-[6px] dark:bg-khotixs-background-dark hover:bg-primary-color hover:text-white dark:hover:bg-primary-color">
                     Event Organizer
                 </Button>
 

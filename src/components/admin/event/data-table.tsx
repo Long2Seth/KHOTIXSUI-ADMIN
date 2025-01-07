@@ -108,7 +108,7 @@ export function EventComponent() {
             <section>
                 <div className="flex justify-between items-start sm:items-center gap-4 mb-5 ">
                     <div>
-                        <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text mb-1 md:mb-2 ">PAYMENT&#39;S USERS</h1>
+                        <h1 className="text-title-color text-lg md:text-2xl xl:text-4xl font-bold dark:text-secondary-color-text mb-1 md:mb-2 ">EVENT MANAGEMENT </h1>
                         <p className="text-description-color text-sm md:text-base xl:text-lg font-light dark:text-dark-description-color">Real-time
                             insights for data-driven decisions</p>
                     </div>
