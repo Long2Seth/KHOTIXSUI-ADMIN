@@ -1,11 +1,11 @@
 import type {Metadata} from "next";
 import "../globals.css";
 import {SidebarProvider} from "@/components/ui/sidebar";
-import {SideBar} from "@/components/admin/SideBar";
-import {cookies} from "next/headers"
+import {SideBar} from "@/components/our-components/navbar/SideBar";
+import {cookies} from "next/headers";
 import {ThemeProvider} from "next-themes";
-import NavBar from "@/components/admin/Navbar";
-
+import NavBar from "@/components/our-components/navbar/Navbar";
+import StoreProvider from "@/StoreProvider";
 
 export const metadata: Metadata = {
     icons: "khotixs_logo.png",
@@ -18,36 +18,31 @@ export default async function RootLayout({
                                          }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const cookieStore = await cookies()
-    const defaultOpen = cookieStore.get("sidebar:state")?.value === "true"
+    const cookieStore = await cookies();
+    const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
     return (
         <html lang="en" suppressHydrationWarning>
-        <body className="bg-khotixs-background-white dark:bg-khotixs-background-dark  ">
+        <body className="bg-khotixs-background-white dark:bg-khotixs-background-dark">
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
         >
-            <SidebarProvider defaultOpen={defaultOpen}>
-
-                <SideBar/>
-                <main className="w-full overflow-x-hidden">
-
-                    <section className="z-40 top-0 sticky w-full flex justify-between h-auto">
-                        <NavBar/>
-                    </section>
-
-                    <section className="dark:bg-gray-500 dark:backdrop-blur dark:bg-opacity-5 p-10 ">
-                        {children}
-                    </section>
-                </main>
-
-
-            </SidebarProvider>
-
+            <StoreProvider>
+                <SidebarProvider defaultOpen={defaultOpen}>
+                    <SideBar/>
+                    <main className="w-full overflow-x-hidden">
+                        <section className="z-40 top-0 sticky w-full flex justify-between h-auto">
+                            <NavBar/>
+                        </section>
+                        <section className="dark:bg-gray-500 dark:backdrop-blur dark:bg-opacity-5 p-10">
+                            {children}
+                        </section>
+                    </main>
+                </SidebarProvider>
+            </StoreProvider>
         </ThemeProvider>
-
         </body>
         </html>
     );

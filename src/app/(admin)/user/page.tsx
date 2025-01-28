@@ -1,4 +1,4 @@
-import {UserComponent} from "@/components/admin/user/data-table";
+import {UserComponent} from "@/components/our-components/user/data-table";
 
 export default function UserPage() {
     return (

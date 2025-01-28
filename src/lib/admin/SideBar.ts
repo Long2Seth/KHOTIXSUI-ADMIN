@@ -23,18 +23,23 @@ export const SideBarData = [
         icon: FiUsers,
     },
     {
+        title: "Admin",
+        url: "/admin",
+        icon: FiUsers,
+    },
+    {
         title: "Event",
         url: "/event",
         icon: RiCalendarEventLine,
     },
     {
         title: "Payment",
-        url: "/payment",
+        url: "/payment-data",
         icon: RiSecurePaymentLine,
     },
     {
         title: "Order Data",
-        url: "/order",
+        url: "/order-data",
         icon: RiFolderChartLine,
     },
     {

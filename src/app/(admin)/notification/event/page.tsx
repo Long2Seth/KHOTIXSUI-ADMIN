@@ -1,4 +1,4 @@
-import EventNotificationComponent from "@/components/admin/EventNotificationComponent";
+import EventNotificationComponent from "@/components/our-components/notification/EventNotificationComponent";
 
 export default function Event(){
     return(

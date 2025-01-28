@@ -1,4 +1,4 @@
-import Profile from "@/components/admin/Profile";
+import Profile from "@/components/our-components/info-user/Profile";
 
 export default function DetailProfile (){
     return (

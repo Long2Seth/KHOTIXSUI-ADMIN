@@ -1,4 +1,4 @@
-import {OrganizerComponent} from "@/components/admin/organizer/data-table";
+import {OrganizerComponent} from "@/components/our-components/organizer/data-table";
 
 export default function OrganizerPage(){
     return(

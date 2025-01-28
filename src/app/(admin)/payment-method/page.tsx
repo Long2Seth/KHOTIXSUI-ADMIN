@@ -1,4 +1,4 @@
-import PaymentMethodComponent from "@/components/admin/PaymentMethodComponent";
+import PaymentMethodComponent from "@/components/our-components/payment-type/PaymentMethodComponent";
 
 export default function PaymentMethod(){
     return(

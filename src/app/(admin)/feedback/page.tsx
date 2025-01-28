@@ -1,4 +1,4 @@
-import {FeedbackComponent} from "@/components/admin/feedback/data-table";
+import {FeedbackComponent} from "@/components/our-components/feedback/data-table";
 
 export default function FeedbackPage() {
     return (

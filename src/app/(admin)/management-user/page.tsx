@@ -1,4 +1,4 @@
-import ManagementUserComponent from "@/components/admin/ManagementUserComponent";
+import ManagementUserComponent from "@/components/our-components/ManagementUserComponent";
 
 export default function ManagementUser() {
     return (
