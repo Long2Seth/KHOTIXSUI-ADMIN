@@ -11,6 +11,7 @@ export const khotixsAdminApi = createApi({
         'Organizer',
         'Admin',
         'Event',
+        'UserProfile'
 
     ]
 });

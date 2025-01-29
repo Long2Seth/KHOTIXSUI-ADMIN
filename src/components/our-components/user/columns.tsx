@@ -27,7 +27,7 @@ export const columnsUser: ColumnDef<UserType>[] = [
                     className="rounded-[6px] h-auto w-[40px]"
                     width={70}
                     height={10}
-                    src={row.original.image}
+                    src={row.original.avatar}
                     alt="image"
                 />
                 <p className="px-2 text-description-color justify-center text-[10px] md:text-sm xl:text-base dark:text-dark-description-color">
@@ -81,6 +81,6 @@ export const columnsUser: ColumnDef<UserType>[] = [
     {
         accessorKey: "action",
         header: () => <div></div>,
-        cell: ({ row }) => <ActionUserComponent uuid={row.original.uuid} username={row.original.username} status={row.original.status}/>,
+        cell: ({ row }) => <ActionUserComponent uuid={row.original.id} username={row.original.username} status={row.original.status}/>,
     },
 ];

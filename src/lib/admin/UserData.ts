@@ -1,8 +1,10 @@
 export type UserType = {
     id: string;
+    username: string;
     fullName: string;
     gender: string;
-    dob: string | null;
+    bio: string;
+    dob: string;
     phoneNumber: string;
     address: string;
     avatar: string;
@@ -10,10 +12,24 @@ export type UserType = {
     position: string;
     email: string;
     businessName: string;
-    username: string;
-    image: string;
-    uuid : string;
 }
+
+
+export type UserProfileType = {
+    id: string;
+    username: string;
+    fullName: string;
+    gender: string;
+    bio: string;
+    dob: string;
+    phoneNumber: string;
+    address: string;
+    avatar: string;
+    status: number;
+    position: string;
+    email: string;
+    businessName: string;
+};
 
 
 
